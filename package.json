@@ -1,0 +1,14 @@
+{
+  "name": "borobeya-control-center",
+  "version": "0.1.0",
+  "description": "Borobeya Music catalog, media, workflow, vector search, ads, sales, and royalty plumbing control center.",
+  "private": true,
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "check": "node scripts/check.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

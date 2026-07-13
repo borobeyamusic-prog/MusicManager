@@ -1,0 +1,1906 @@
+[
+  {
+    "id": "dice-on-the-floor",
+    "type": "music",
+    "title": "DICE ON THE FLOOR",
+    "artist": "Borobeya Music",
+    "isrc": "QT6EZ2602310",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrh4cwao-pfgta1",
+        "kind": "link",
+        "label": "YouTube Topic / YouTube Music",
+        "url": "https://music.youtube.com/watch?v=qXw7QjuXb1s",
+        "notes": "Imported from YouTube Topic channel UCvoUvS3rLFe0VA6X9EMRhdg for DICE ON THE FLOOR. Watch: https://www.youtube.com/watch?v=qXw7QjuXb1s",
+        "prompt": "",
+        "addedAt": "2026-07-12T01:32:58.368Z"
+      }
+    ],
+    "notes": "Found in DistroKid.",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/dice-on-the-floor.txt",
+      "length": 1295,
+      "updatedAt": "2026-07-09T17:24:45.387Z",
+      "source": "recovered-from-assets",
+      "sourceUrl": "",
+      "styleTags": []
+    }
+  },
+  {
+    "id": "mango-on-the-bus",
+    "type": "music",
+    "title": "MANGO ON THE BUS",
+    "artist": "Borobeya Music",
+    "isrc": "QT6ED2609038",
+    "status": "released",
+    "priority": 1,
+    "tags": [
+      "release",
+      "distrokid",
+      "apple-music",
+      "iheart",
+      "youtube",
+      "shorts-candidate"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrh4cx2c-afwl9j",
+        "kind": "link",
+        "label": "YouTube Topic / YouTube Music",
+        "url": "https://music.youtube.com/watch?v=QB4PsbSyAQk",
+        "notes": "Imported from YouTube Topic channel UCvoUvS3rLFe0VA6X9EMRhdg for MANGO ON THE BUS. Watch: https://www.youtube.com/watch?v=QB4PsbSyAQk",
+        "prompt": "",
+        "addedAt": "2026-07-12T01:32:59.364Z"
+      }
+    ],
+    "notes": "Alternate: Mango onthe Bus final.",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/mango-on-the-bus.txt",
+      "length": 1358,
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/mango-on-the-bus.json",
+      "updatedAt": "2026-07-09T18:15:21.706Z",
+      "source": "suno",
+      "sourceUrl": "https://suno.com/song/5b3fc38e-4df4-47af-826b-b6444306d033",
+      "styleTags": [
+        "modern deep house",
+        "funky house",
+        "underground club",
+        "Classic Italian House",
+        "Soulful House",
+        "128 Bpm",
+        "Underground Warehouse Groove",
+        "Four-On-The-Floor Kick",
+        "Organic Swing",
+        "Rolling House Bassline",
+        "Warm Rhodes Chords",
+        "Piano Stabs",
+        "Disco Percussion",
+        "Punchy Claps",
+        "Deep Sub-Bass",
+        "Tape Saturation",
+        "Analog Warmth",
+        "Dynamic Light-Shade",
+        "Hypnotic Energy",
+        "Peak-Time Pressure"
+      ]
+    }
+  },
+  {
+    "id": "come-back-to-me",
+    "type": "music",
+    "title": "COME BACK TO ME",
+    "artist": "Borobeya Music",
+    "isrc": "QT6EC2696814",
+    "status": "released",
+    "priority": 1,
+    "tags": [
+      "release",
+      "distrokid",
+      "shorts-candidate"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrh4cy0m-iox84j",
+        "kind": "link",
+        "label": "YouTube Topic / YouTube Music",
+        "url": "https://music.youtube.com/watch?v=Xfy1c2Dihlw",
+        "notes": "Imported from YouTube Topic channel UCvoUvS3rLFe0VA6X9EMRhdg for COME BACK TO ME. Watch: https://www.youtube.com/watch?v=Xfy1c2Dihlw",
+        "prompt": "",
+        "addedAt": "2026-07-12T01:33:00.598Z"
+      }
+    ],
+    "notes": "Video title may include Bargard.",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/come-back-to-me.txt",
+      "length": 27585,
+      "updatedAt": "2026-07-09T18:07:55.269Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "Piano acid techno with a stumbling-to-steady groove: ambient glitches",
+        "distant vocal fragments",
+        "and tape hiss over sparse percussion",
+        "Detuned piano stabs",
+        "squelchy 303 lines",
+        "heartbeat kick",
+        "emotional bass",
+        "explosive sidechain",
+        "chopped vox",
+        "and electric violin drones with gritty bow noise",
+        "delay throws",
+        "and tense crescendos"
+      ]
+    }
+  },
+  {
+    "id": "cherry-pie",
+    "type": "music",
+    "title": "CHERRY PIE",
+    "artist": "Borobeya Music",
+    "isrc": "QT6EC2690680",
+    "status": "released",
+    "priority": 1,
+    "tags": [
+      "release",
+      "distrokid",
+      "shorts-candidate"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mre52g79-i16wrb",
+        "kind": "link",
+        "label": "Cherry Pie Suno source",
+        "url": "https://suno.com/song/997bf02c-314c-43de-87e6-55e38a27a0b6",
+        "notes": "Suno source link",
+        "prompt": "",
+        "addedAt": "2026-07-09T23:29:32.037Z"
+      },
+      {
+        "id": "media-mrh4cyyf-235hlp",
+        "kind": "link",
+        "label": "YouTube Topic / YouTube Music",
+        "url": "https://music.youtube.com/watch?v=_TeQwbAD_6Q",
+        "notes": "Imported from YouTube Topic channel UCvoUvS3rLFe0VA6X9EMRhdg for CHERRY PIE. Watch: https://www.youtube.com/watch?v=_TeQwbAD_6Q",
+        "prompt": "",
+        "addedAt": "2026-07-12T01:33:01.815Z"
+      }
+    ],
+    "notes": "Lyric video candidate.",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/cherry-pie.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/cherry-pie.json",
+      "length": 28147,
+      "updatedAt": "2026-07-09T21:11:06.381Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "Piano acid techno with a stumbling-to-steady groove: ambient glitches",
+        "distant vocal fragments",
+        "and tape hiss over sparse percussion",
+        "Detuned piano stabs",
+        "squelchy 303 lines",
+        "heartbeat kick",
+        "emotional bass",
+        "explosive sidechain",
+        "chopped vox",
+        "and electric violin drones with gritty bow noise",
+        "delay throws",
+        "and tense crescendos"
+      ]
+    }
+  },
+  {
+    "id": "waves-in-motion",
+    "type": "music",
+    "title": "WAVES IN MOTION",
+    "artist": "Borobeya Music",
+    "isrc": "QZZ7R2660635",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrh4czx8-kj26bs",
+        "kind": "link",
+        "label": "YouTube Topic / YouTube Music",
+        "url": "https://music.youtube.com/watch?v=CwL1dSOUsv8",
+        "notes": "Imported from YouTube Topic channel UCvoUvS3rLFe0VA6X9EMRhdg for WAVES IN MOTION. Watch: https://www.youtube.com/watch?v=CwL1dSOUsv8",
+        "prompt": "",
+        "addedAt": "2026-07-12T01:33:03.068Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/waves-in-motion.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/waves-in-motion.json",
+      "length": 1678,
+      "updatedAt": "2026-07-09T23:27:40.447Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "Tropical house with a four-on-the-floor kick and syncopated percussion",
+        "A bright",
+        "plucked synth melody plays a repetitive hook alongside a deep",
+        "sub-heavy synth bass",
+        "Clean electric guitar provides rhythmic stabs on the offbeats",
+        "Male vocals alternate between a breathy chest voice and a clear falsetto",
+        "processed with light reverb and delay",
+        "The arrangement features filtered synth sweeps and white noise risers during transitions",
+        "115 BPM",
+        "G major"
+      ]
+    }
+  },
+  {
+    "id": "after-midnight-velvet",
+    "type": "music",
+    "title": "After Midnight Velvet",
+    "artist": "Borobeya Music",
+    "isrc": "QZZ782608234",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mre6htl9-amz36n",
+        "kind": "link",
+        "label": "https://suno.com/song/e5f3bfd9-16bd-4d22-9a6a-ee4e92278bd8",
+        "url": "https://suno.com/song/e5f3bfd9-16bd-4d22-9a6a-ee4e92278bd8",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-10T00:09:28.845Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/after-midnight-velvet.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/after-midnight-velvet.json",
+      "length": 1257,
+      "updatedAt": "2026-07-10T00:09:08.657Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "[QUALITY_LEVEL: MAX] [FIDELITY: STUDIO_GRADE] [SIGNAL_PATH: CLEAN]",
+        "Sultry lounge deep house with an after-hours club atmosphere",
+        "smoky female lead vocal",
+        "sexy and restrained delivery",
+        "techno-jazz textures",
+        "funky house groove",
+        "warm sub bass",
+        "crisp 4-on-the-floor kick",
+        "soft Rhodes chords",
+        "muted jazz guitar accents",
+        "tasteful sax flourishes",
+        "intimate and luxurious vibe",
+        "hypnotic and elegant",
+        "vocal airy but controlled. Include one clearly defined open section: instrumental only",
+        "no lead vocal",
+        "no rap",
+        "no ad-libs",
+        "no replacement melody",
+        "leave space for guest artist",
+        "keep drums",
+        "bassline",
+        "and atmosphere active. Smooth build",
+        "classy tension",
+        "late-night sophistication."
+      ]
+    }
+  },
+  {
+    "id": "full-circle",
+    "type": "music",
+    "title": "FULL CIRCLE",
+    "artist": "Borobeya Music",
+    "isrc": "QZWFV2613704",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mre6kkr6-ur7l42",
+        "kind": "link",
+        "label": "https://suno.com/song/6bec4fa3-4b08-4707-9c5d-cfa2821cdd12",
+        "url": "https://suno.com/song/6bec4fa3-4b08-4707-9c5d-cfa2821cdd12",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-10T00:11:37.362Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/full-circle.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/full-circle.json",
+      "length": 1699,
+      "updatedAt": "2026-07-10T00:11:13.531Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "deep house funk",
+        "steady four-on-the-floor groove",
+        "warm analog bassline",
+        "syncopated funk guitar chops",
+        "electric violin leads and melodic riffs",
+        "airy ambient pads",
+        "subtle vocal chops",
+        "spacious club reverb",
+        "smooth yet driving dance energy",
+        "hypnotic build-and-release arrangement"
+      ]
+    }
+  },
+  {
+    "id": "drift-in-violet",
+    "type": "music",
+    "title": "DRIFT IN VIOLET",
+    "artist": "Borobeya Music",
+    "isrc": "QZWFR2631611",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mreaseje-7d72rv",
+        "kind": "link",
+        "label": "https://suno.com/song/7bc0cc81-171b-481c-b883-58539f452c29",
+        "url": "https://suno.com/song/7bc0cc81-171b-481c-b883-58539f452c29",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-10T02:09:41.018Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/drift-in-violet.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/drift-in-violet.json",
+      "length": 1708,
+      "updatedAt": "2026-07-10T02:08:56.770Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "[QUALITY_LEVEL: MAX] [FIDELITY: STUDIO_GRADE] [SIGNAL_PATH: CLEAN] Melodic techno + funky deep house fusion | 124 BPM | euphoric pads + wide stereo synth leads | rolling bassline + soft piano chords | emotional mixed voice vocal + tight syllabic rap | Neumann U 87 | Neve console warmth | recorded to tape"
+      ]
+    }
+  },
+  {
+    "id": "life",
+    "type": "music",
+    "title": "LIFE",
+    "artist": "Borobeya Music",
+    "isrc": "QZWFR2622068",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mreavk00-8rr5b5",
+        "kind": "link",
+        "label": "https://suno.com/song/685609e0-a830-4d6b-b092-7df6fa5a31c1",
+        "url": "https://suno.com/song/685609e0-a830-4d6b-b092-7df6fa5a31c1",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-10T02:12:08.064Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/life.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/life.json",
+      "length": 2189,
+      "updatedAt": "2026-07-10T02:12:00.536Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "rap",
+        "cinematic hip-hop",
+        "dual vocals",
+        "emotional",
+        "poetic",
+        "vocal",
+        "male vocals",
+        "ambient",
+        "hip-hop"
+      ]
+    }
+  },
+  {
+    "id": "neon-afterglow",
+    "type": "music",
+    "title": "NEON AFTERGLOW",
+    "artist": "Borobeya Music",
+    "isrc": "QZWFQ2660805",
+    "status": "released",
+    "priority": 1,
+    "tags": [
+      "release",
+      "distrokid",
+      "shorts-candidate"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mreaxfg3-6k3uyb",
+        "kind": "link",
+        "label": "https://suno.com/song/88bf266c-07e8-4ef9-a112-a8eb66c5ced7",
+        "url": "https://suno.com/song/88bf266c-07e8-4ef9-a112-a8eb66c5ced7",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-10T02:13:35.475Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/neon-afterglow.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/neon-afterglow.json",
+      "length": 1820,
+      "updatedAt": "2026-07-10T02:13:22.924Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "rap",
+        "cinematic hip-hop",
+        "dual vocals",
+        "emotional",
+        "poetic",
+        "vocal",
+        "male vocals",
+        "ambient",
+        "hip-hop"
+      ]
+    }
+  },
+  {
+    "id": "higher-now",
+    "type": "music",
+    "title": "HIGHER NOW",
+    "artist": "Borobeya Music",
+    "isrc": "QZWFP2632699",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mreaztzz-1b79ez",
+        "kind": "link",
+        "label": "https://suno.com/song/b83706fb-6986-4c72-9e6a-87155f440033",
+        "url": "https://suno.com/song/b83706fb-6986-4c72-9e6a-87155f440033",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-10T02:15:27.647Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/higher-now.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/higher-now.json",
+      "length": 1488,
+      "updatedAt": "2026-07-10T02:16:18.105Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "Progressive house with a deep",
+        "melodic focus",
+        "A syncopated",
+        "percussive synth pluck plays a repetitive 16th-note pattern in G minor at 124 BPM",
+        "A sub-heavy kick drum enters with a four-on-the-floor pattern",
+        "complemented by crisp closed hi-hats on the off-beats",
+        "Atmospheric",
+        "side-chained pads swell in the background",
+        "creating a rhythmic pumping effect",
+        "A resonant",
+        "low-pass filtered bassline follows the root notes of the chord progression",
+        "Shaker loops and occasional woodblock hits provide additional rhythmic texture",
+        "The arrangement features a gradual buildup where a high-frequency lead synth with a short decay introduces a counter-melody",
+        "White noise risers and filtered drum fills transition between sections"
+      ]
+    }
+  },
+  {
+    "id": "mamito",
+    "type": "music",
+    "title": "MAMITO",
+    "artist": "Borobeya Music",
+    "isrc": "QZWFP2628746",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrjgyw88-9vwhj1",
+        "kind": "audio",
+        "label": "https://suno.com/song/c490fc98-6e7b-4b6b-a114-49446ea77280",
+        "url": "https://suno.com/song/c490fc98-6e7b-4b6b-a114-49446ea77280",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T17:01:32.456Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/mamito.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/mamito.json",
+      "length": 1214,
+      "updatedAt": "2026-07-13T17:01:31.072Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "deep house",
+        "latin lounge",
+        "techno groove"
+      ]
+    }
+  },
+  {
+    "id": "smoke-in-the-light",
+    "type": "music",
+    "title": "SMOKE IN THE LIGHT",
+    "artist": "Borobeya Music",
+    "isrc": "QZWFK2625559",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrjh33si-63fe3e",
+        "kind": "link",
+        "label": "Untitled media",
+        "url": "",
+        "notes": "",
+        "prompt": "https://suno.com/song/72e9fd29-f20f-4680-802a-78b495d1fbed",
+        "addedAt": "2026-07-13T17:04:48.882Z"
+      },
+      {
+        "id": "media-mrjh3u01-7wfwfy",
+        "kind": "link",
+        "label": "https://suno.com/song/72e9fd29-f20f-4680-802a-78b495d1fbed",
+        "url": "https://suno.com/song/72e9fd29-f20f-4680-802a-78b495d1fbed",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T17:05:22.849Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/smoke-in-the-light.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/smoke-in-the-light.json",
+      "length": 1594,
+      "updatedAt": "2026-07-13T17:04:57.016Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "progressive house",
+        "techno",
+        "afro house"
+      ]
+    }
+  },
+  {
+    "id": "robo-lover",
+    "type": "music",
+    "title": "ROBO LOVER",
+    "artist": "Borobeya Music",
+    "isrc": "QZWFK2622356",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrjh6d5s-9x90o4",
+        "kind": "link",
+        "label": "Untitled media",
+        "url": "",
+        "notes": "",
+        "prompt": "https://suno.com/song/f8389198-b6a7-49b7-8ea2-19121af909bb",
+        "addedAt": "2026-07-13T17:07:20.992Z"
+      },
+      {
+        "id": "media-mrjh81w7-17vtfs",
+        "kind": "audio",
+        "label": "ROBO LOVER",
+        "url": "https://suno.com/song/f8389198-b6a7-49b7-8ea2-19121af909bb",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T17:08:39.703Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/robo-lover.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/robo-lover.json",
+      "length": 1030,
+      "updatedAt": "2026-07-13T17:07:08.993Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "Deep house lounge",
+        "after hours vibe",
+        "120 BPM",
+        "female breathy whisper vocal",
+        "intimate delivery",
+        "warm sub bass",
+        "Rhodes chords",
+        "minimal percussion",
+        "analog tape warmth",
+        "subtle vocoder texture",
+        "underground club lounge atmosphere",
+        "studio-grade clarity",
+        "Lyrics Header:",
+        "[MODE: HIGH_FIDELITY] [AUDIO_RESOLUTION: CRYSTAL_CLEAR]",
+        "Instruction:",
+        "Soft vocal enters immediately within first 5 seconds",
+        "no aggressive hook repetition",
+        "sensual and intimate tone",
+        "slow groove",
+        "minimal arrangement",
+        "after-hours deep house mood",
+        "⸻"
+      ]
+    }
+  },
+  {
+    "id": "hot-and-cold-again",
+    "type": "music",
+    "title": "HOT AND COLD AGAIN",
+    "artist": "Borobeya Music",
+    "isrc": "QZWFK2618436",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrjhc3on-z6hym9",
+        "kind": "link",
+        "label": "HOT AND COLD AGAIN",
+        "url": "https://suno.com/song/1330de8d-bc2f-4eef-a5f9-9ace05e5d456",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T17:11:48.647Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/hot-and-cold-again.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/hot-and-cold-again.json",
+      "length": 1917,
+      "updatedAt": "2026-07-13T17:11:27.224Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "trap rap",
+        "aggressive hip hop",
+        "west coast bounce"
+      ]
+    }
+  },
+  {
+    "id": "love-without-a-face",
+    "type": "music",
+    "title": "Love Without a Face",
+    "artist": "Borobeya Music",
+    "isrc": "QZWFK2615123",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [],
+    "notes": ""
+  },
+  {
+    "id": "chromecode-crush",
+    "type": "music",
+    "title": "CHROMECODE CRUSH",
+    "artist": "Borobeya Music",
+    "isrc": "QZTBF2646356",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mri4esrt-o9b1ks",
+        "kind": "link",
+        "label": "https://suno.com/song/4b599541-a70a-45bd-b252-6a0b00d70c52",
+        "url": "https://suno.com/song/4b599541-a70a-45bd-b252-6a0b00d70c52",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-12T18:22:13.289Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/chromecode-crush.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/chromecode-crush.json",
+      "length": 1115,
+      "updatedAt": "2026-07-12T18:21:47.678Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "electro-pop",
+        "glitch",
+        "synthpop"
+      ]
+    }
+  },
+  {
+    "id": "velvet-fever-stay-close",
+    "type": "music",
+    "title": "VELVET FEVER (STAY CLOSE)",
+    "artist": "Borobeya Music",
+    "isrc": "QZTBF2631379",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrjhnc3i-gjb6hk",
+        "kind": "link",
+        "label": "VELVET FEVER (STAY CLOSE)",
+        "url": "https://suno.com/song/ce3877e0-3b30-47fc-90b0-2efc4a8c3ff0",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T17:20:32.766Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/velvet-fever-stay-close.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/velvet-fever-stay-close.json",
+      "length": 1441,
+      "updatedAt": "2026-07-13T17:20:34.555Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "rap",
+        "cinematic hip-hop",
+        "dual vocals",
+        "emotional",
+        "poetic",
+        "vocal",
+        "male vocals",
+        "ambient",
+        "hip-hop"
+      ]
+    }
+  },
+  {
+    "id": "front-row-forever-volume-1",
+    "type": "music",
+    "title": "FRONT ROW FOREVER (VOLUME 1)",
+    "artist": "Borobeya Music",
+    "isrc": "QZTB92601284",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrjhro5k-uyrwyp",
+        "kind": "link",
+        "label": "FRONT ROW FOREVER (VOLUME 1)",
+        "url": "https://suno.com/song/2d9c3fd2-af96-4985-b741-467154fc6623",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T17:23:55.016Z"
+      }
+    ],
+    "notes": "Alternate: VOLUME 1.",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/front-row-forever-volume-1.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/front-row-forever-volume-1.json",
+      "length": 1340,
+      "updatedAt": "2026-07-13T17:23:31.218Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "rap",
+        "cinematic hip-hop",
+        "dual vocals",
+        "emotional",
+        "poetic",
+        "vocal",
+        "male vocals",
+        "ambient",
+        "hip-hop"
+      ]
+    }
+  },
+  {
+    "id": "neon-outfit",
+    "type": "music",
+    "title": "NEON OUTFIT",
+    "artist": "Borobeya Music",
+    "isrc": "QZTB42616538",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrjhw8u3-cfzpty",
+        "kind": "audio",
+        "label": "NEON OUTFIT · Record",
+        "url": "https://suno.com/song/606e44c3-39e5-4b53-a23d-c265f475e3a5",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T17:27:28.443Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/neon-outfit.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/neon-outfit.json",
+      "length": 1374,
+      "updatedAt": "2026-07-13T17:27:09.225Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "modern deep house",
+        "funky house",
+        "club/warehouse rave"
+      ]
+    }
+  },
+  {
+    "id": "smoke-on-your-lips",
+    "type": "music",
+    "title": "SMOKE ON YOUR LIPS",
+    "artist": "Borobeya Music",
+    "isrc": "QZTB42610790",
+    "status": "released",
+    "priority": 1,
+    "tags": [
+      "release",
+      "distrokid",
+      "shorts-candidate"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrji13dh-852occ",
+        "kind": "link",
+        "label": "https://suno.com/song/bbce7768-0063-441d-bf67-e416056d8f9a",
+        "url": "https://suno.com/song/bbce7768-0063-441d-bf67-e416056d8f9a",
+        "notes": "SMOKE ON YOUR LIPS",
+        "prompt": "",
+        "addedAt": "2026-07-13T17:31:14.645Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/smoke-on-your-lips.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/smoke-on-your-lips.json",
+      "length": 2093,
+      "updatedAt": "2026-07-13T17:30:40.903Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "modern deep house",
+        "lounge house",
+        "jazz-influenced deep house"
+      ]
+    }
+  },
+  {
+    "id": "sexy-lounge-velvet-after-hours",
+    "type": "music",
+    "title": "Sexy Lounge Velvet After Hours",
+    "artist": "Borobeya Music",
+    "isrc": "QZTB32687265",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrji5fa8-3kb71t",
+        "kind": "link",
+        "label": "Sexy Lounge Velvet After Hours",
+        "url": "https://suno.com/song/b04eb7d3-1230-4ba9-ad19-c4adcb614498",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T17:34:36.704Z"
+      },
+      {
+        "id": "media-mrji9658-dpqtkl",
+        "kind": "video",
+        "label": "Sexy Lounge Velvet After Hours",
+        "url": "https://youtu.be/wpAZu-s7P8s?list=RDwpAZu-s7P8s",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T17:37:31.484Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/sexy-lounge-velvet-after-hours.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/sexy-lounge-velvet-after-hours.json",
+      "length": 2130,
+      "updatedAt": "2026-07-13T17:37:39.770Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "Sexy lounge deep house track at 122 BPM",
+        "warm minor-7 jazz chords",
+        "rolling deep house bass",
+        "minimal drop with vocal chops",
+        "Breathy intimate English female vocal",
+        "half-sung half-spoken",
+        "seductive late-night afterhours vibe",
+        "whisper doubles",
+        "wide airy hook harmonies",
+        "glossy modern mix",
+        "club-ready low end"
+      ]
+    }
+  },
+  {
+    "id": "chrome-on-the-ceiling-vocal-club-mix",
+    "type": "music",
+    "title": "Chrome On The Ceiling (Vocal Club Mix)",
+    "artist": "Borobeya Music",
+    "isrc": "QZTB32681228",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrjjiuxh-dwzgxa",
+        "kind": "link",
+        "label": "Suno - Chrome On The Ceiling (Vocal Club Mix)",
+        "url": "https://suno.com/song/fccdaafb-117b-4272-9c5e-516ba19a2c15",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T18:13:03.125Z"
+      },
+      {
+        "id": "media-mrjjjuzm-oir6he",
+        "kind": "video",
+        "label": "Youtube - Chrome On The Ceiling (Vocal Club Mix)",
+        "url": "https://www.youtube.com/watch?v=eecdbKtixFE&list=RDeecdbKtixFE&start_radio=1",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T18:13:49.858Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/chrome-on-the-ceiling-vocal-club-mix.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/chrome-on-the-ceiling-vocal-club-mix.json",
+      "length": 1859,
+      "updatedAt": "2026-07-13T18:13:52.532Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "deep house",
+        "techno",
+        "rave"
+      ]
+    }
+  },
+  {
+    "id": "neon-heartbeat",
+    "type": "music",
+    "title": "Neon Heartbeat",
+    "artist": "Borobeya Music",
+    "isrc": "QZTB32603272",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrjk9h88-xub6lt",
+        "kind": "link",
+        "label": "SUNO - Neon Heartbeat",
+        "url": "https://suno.com/song/81b2b10c-ce37-4762-bc68-a6bae3c6148b",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T18:33:45.080Z"
+      },
+      {
+        "id": "media-mrjkamg0-dgf5ou",
+        "kind": "video",
+        "label": "https://www.youtube.com/watch?v=1pNUDt4Rylo&list=RD1pNUDt4Rylo&start_radio=1",
+        "url": "https://www.youtube.com/watch?v=1pNUDt4Rylo&list=RD1pNUDt4Rylo&start_radio=1",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T18:34:38.496Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/neon-heartbeat.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/neon-heartbeat.json",
+      "length": 1859,
+      "updatedAt": "2026-07-13T18:33:08.758Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "Modern funky deep rave house with underground techno drive at 128 BPM",
+        "Swingy house groove",
+        "rubbery deep bass",
+        "gritty warehouse claps",
+        "disco-tinged synth stabs",
+        "hypnotic rolling drop",
+        "dark-to-uplifting emotional journey",
+        "English-only vocals: intimate talk-sung verses",
+        "stacked anthem hook with crowd-chant energy",
+        "catchy repeated mantra “Follow the neon heartbeat / right now",
+        "”"
+      ]
+    }
+  },
+  {
+    "id": "chrome-on-the-ceiling",
+    "type": "music",
+    "title": "Chrome On The Ceiling",
+    "artist": "Borobeya Music",
+    "isrc": "QZTB22647758",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrjjmuh2-gtz1wy",
+        "kind": "link",
+        "label": "SUNO - https://suno.com/song/95075fa3-4de8-4f4f-b4ca-5bbf5dd2e253",
+        "url": "SUNO - https://suno.com/song/95075fa3-4de8-4f4f-b4ca-5bbf5dd2e253",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T18:16:09.158Z"
+      },
+      {
+        "id": "media-mrjjnjzn-bmtiic",
+        "kind": "video",
+        "label": "Chrome On The Ceiling",
+        "url": "https://www.youtube.com/watch?v=4arnXQ7NJ2o&list=RD4arnXQ7NJ2o&start_radio=1",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T18:16:42.227Z"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "id": "azadi-in-the-air",
+    "type": "music",
+    "title": "AZADI IN THE AIR",
+    "artist": "Borobeya Music",
+    "isrc": "QZTB22616041",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrjklgpl-6f4xd0",
+        "kind": "link",
+        "label": "https://suno.com/song/98fe86a5-2333-41d6-b2ef-309b516fcb38",
+        "url": "https://suno.com/song/98fe86a5-2333-41d6-b2ef-309b516fcb38",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T18:43:04.281Z"
+      },
+      {
+        "id": "media-mrjkmdsv-aedqov",
+        "kind": "video",
+        "label": "https://wwww.youtube.com/watch?v=4ZC_BhhjyTI&list=RD4ZC_BhhjyTI&start_radio=1",
+        "url": "https://wwww.youtube.com/watch?v=4ZC_BhhjyTI&list=RD4ZC_BhhjyTI&start_radio=1",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T18:43:47.167Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/azadi-in-the-air.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/azadi-in-the-air.json",
+      "length": 1170,
+      "updatedAt": "2026-07-13T18:42:53.101Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "",
+      "styleTags": [
+        "dark R&B trap soul",
+        "minimal hip hop production",
+        "70 BPM",
+        "deep 808 bass",
+        "detuned electric piano",
+        "ambient textures",
+        "intimate raspy vocal",
+        "late night vibe",
+        "emotional and moody",
+        "minimal drums",
+        "hypnotic hook"
+      ]
+    }
+  },
+  {
+    "id": "electric-skin",
+    "type": "music",
+    "title": "ELECTRIC SKIN",
+    "artist": "Borobeya Music",
+    "isrc": "QZTAZ2673887",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [],
+    "notes": ""
+  },
+  {
+    "id": "laser-love-and-leather",
+    "type": "music",
+    "title": "Laser Love & Leather",
+    "artist": "Borobeya Music",
+    "isrc": "QZTAY2646569",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/laser-love-and-leather.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/laser-love-and-leather.json",
+      "length": 2343,
+      "updatedAt": "2026-07-13T19:13:53.151Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "https://suno.com/song/bc8e1d0b-3b8b-49c4-9db9-cc918d1f9781",
+      "styleTags": [
+        "Modern 2026 techno + deep funk house + disco party anthem",
+        "130 BPM",
+        "Punchy four-on-the-floor",
+        "swung percussion",
+        "gritty funky analog bassline",
+        "metallic stabs",
+        "filtered disco string chops",
+        "big risers and siren FX",
+        "vocal chops and occasional vocoder doubles",
+        "Confident flirty lead vocal with stacked chant hooks and crowd call-and-response",
+        "Festival-ready drop",
+        "DJ-friendly structure",
+        "Language: English"
+      ]
+    }
+  },
+  {
+    "id": "when-iran-is-free-again",
+    "type": "music",
+    "title": "When Iran Is Free Again",
+    "artist": "Borobeya Music",
+    "isrc": "QZNWY2672701",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [],
+    "notes": "Confirm capitalization before ASCAP.",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/when-iran-is-free-again.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/when-iran-is-free-again.json",
+      "length": 1308,
+      "updatedAt": "2026-07-13T19:16:39.533Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "https://suno.com/song/3b14b57c-69c3-4cfc-b3e2-1a9a15ed20d4",
+      "styleTags": [
+        "deep house anthem with funk bass",
+        "Persian rap verses and emotional female hook",
+        "bilingual Farsi English vocals",
+        "atmospheric pads",
+        "Persian instruments",
+        "protest energy building into festival drop",
+        "emotional and cinematic",
+        "124 BPM",
+        "powerful chant hook “When Iran is free again”",
+        "dynamic language switching",
+        "uplifting freedom anthem",
+        "⸻"
+      ]
+    }
+  },
+  {
+    "id": "like-the-ocean",
+    "type": "music",
+    "title": "Like the Ocean / مثل دریا",
+    "artist": "Borobeya Music",
+    "isrc": "QZNWX2697589",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid",
+      "iheart"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [],
+    "notes": "User provided iHeart song link.",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/like-the-ocean.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/like-the-ocean.json",
+      "length": 2042,
+      "updatedAt": "2026-07-13T19:18:13.947Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "https://suno.com/song/2cb668f7-fe5c-45c3-b9f1-71d954b234c8",
+      "styleTags": [
+        "Modern cinematic hip-hop fused with dreamy melodic house",
+        "Emotional bilingual rap verses (Farsi + English)",
+        "atmospheric pads",
+        "ocean wave ambience",
+        "deep warm bass",
+        "subtle Persian tonal textures",
+        "Build from reflective poetic flow into powerful 808-driven climax",
+        "Female airy hook layered with male rap",
+        "Euphoric drop with sidechained synths",
+        "Wide stereo space",
+        "immersive",
+        "emotional",
+        "inspirational",
+        "festival-ready but intimate",
+        "⸻",
+        "🎵 Tempo & Musical Direction",
+        "•\tBPM: 118–122 (for house feel but still rap-friendly)",
+        "•\tAlt Option: 124 BPM if you want more dance-floor energy",
+        "•\tKey vibe: Minor key (D minor / F minor works great)",
+        "•\tEnergy Curve:",
+        "•\tVerse 1: 60%",
+        "•\tPre-hook build: 75%",
+        "•\tHook drop: 95%",
+        "•\tFinal drop: 100% layered 808 + house kick"
+      ]
+    }
+  },
+  {
+    "id": "freedom",
+    "type": "music",
+    "title": "Freedom",
+    "artist": "Borobeya Music",
+    "isrc": "QZNWV2630941",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrjlwa74-w9hla5",
+        "kind": "video",
+        "label": "https://www.youtube.com/watch?v=MWklkP1c8NQ&list=RDMWklkP1c8NQ&start_radio=1",
+        "url": "https://www.youtube.com/watch?v=MWklkP1c8NQ&list=RDMWklkP1c8NQ&start_radio=1",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T19:19:28.672Z"
+      },
+      {
+        "id": "media-mrjownt1-b1hotl",
+        "kind": "cover",
+        "label": "https://cdn2.suno.ai/634db975-b9d2-415a-99ec-bc2561f5ab52.jpeg",
+        "url": "https://cdn2.suno.ai/634db975-b9d2-415a-99ec-bc2561f5ab52.jpeg",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T20:43:45.157Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/freedom.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/freedom.json",
+      "length": 1540,
+      "updatedAt": "2026-07-13T20:42:44.646Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "https://suno.com/song/6627be1c-661a-4464-84af-a51d1838f230",
+      "styleTags": [
+        "Deep House Funk / Persian Emotional Rap / Modern Persian Hip-Hop / Techno Persian"
+      ]
+    }
+  },
+  {
+    "id": "city-lights",
+    "type": "music",
+    "title": "City Lights — چراغ‌های شهر",
+    "artist": "Borobeya Music",
+    "isrc": "QZNWR2658130",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [],
+    "notes": "Alternate: City Lights / چراغ‌های شهر.",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/city-lights.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/city-lights.json",
+      "length": 1890,
+      "updatedAt": "2026-07-13T19:49:42.654Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "https://suno.com/song/fa04407f-48e7-44b5-bae0-caf2d0f2d0bf",
+      "styleTags": [
+        "deep house",
+        "emotional rap",
+        "pino",
+        "base",
+        "funk",
+        "Persian style",
+        "Persian donbak",
+        "voilen"
+      ]
+    }
+  },
+  {
+    "id": "rise-again-iran",
+    "type": "music",
+    "title": "RISE AGAIN IRAN",
+    "artist": "Borobeya Music",
+    "isrc": "QZNWR2643050",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrjmwuge-gqfzbh",
+        "kind": "video",
+        "label": "https://www.youtube.com/watch?v=dTLcMIn33J4&list=RDdTLcMIn33J4&start_radio=1",
+        "url": "https://www.youtube.com/watch?v=dTLcMIn33J4&list=RDdTLcMIn33J4&start_radio=1",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T19:47:54.542Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/rise-again-iran.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/rise-again-iran.json",
+      "length": 1606,
+      "updatedAt": "2026-07-13T19:47:39.393Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "https://suno.com/song/f5d4651f-25d6-43a3-b456-771600f70309",
+      "styleTags": [
+        "rap",
+        "progressive house",
+        "funk",
+        "fun"
+      ]
+    }
+  },
+  {
+    "id": "we-are-the-people-of-iran",
+    "type": "music",
+    "title": "We are the people of Iran",
+    "artist": "Borobeya Music",
+    "isrc": "QZNWQ2650706",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrjmt4lv-rqzab3",
+        "kind": "video",
+        "label": "https://www.youtube.com/watch?v=mdJ_4H0zC74&list=RDmdJ_4H0zC74&start_radio=1",
+        "url": "https://www.youtube.com/watch?v=mdJ_4H0zC74&list=RDmdJ_4H0zC74&start_radio=1",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T19:45:01.075Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/we-are-the-people-of-iran.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/we-are-the-people-of-iran.json",
+      "length": 1988,
+      "updatedAt": "2026-07-13T19:44:47.860Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "https://suno.com/song/19e9e294-d207-461e-9872-21229cf4ff32",
+      "styleTags": [
+        "Genre blend:",
+        "•\tRap / hip-hop verses (tight flow",
+        "emotional delivery)",
+        "•\tTechno / melodic techno drop for hook (anthem feel)",
+        "•\tAtmospheric pads + subtle Persian instruments (ney",
+        "santur textures)",
+        "•\tCrowd chant layers in hook for unity vibe",
+        "Tempo: ~95–105 BPM (rap) → techno drop with heavier bass",
+        "Mood: emotional → powerful → hopeful anthem"
+      ]
+    }
+  },
+  {
+    "id": "dance-for-tomorrow",
+    "type": "music",
+    "title": "Dance For Tomorrow",
+    "artist": "Borobeya Music",
+    "isrc": "QZNWQ2645276",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrjmo6j8-8rn7if",
+        "kind": "video",
+        "label": "https://www.youtube.com/watch?v=cpcb1O65ges&list=RDcpcb1O65ges&start_radio=1",
+        "url": "https://www.youtube.com/watch?v=cpcb1O65ges&list=RDcpcb1O65ges&start_radio=1",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T19:41:10.292Z"
+      }
+    ],
+    "notes": "",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/dance-for-tomorrow.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/dance-for-tomorrow.json",
+      "length": 1836,
+      "updatedAt": "2026-07-13T19:40:50.716Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "https://suno.com/song/e385151b-81dc-4e77-afd4-ed38456c943f",
+      "styleTags": [
+        "rap",
+        "funk bass groove",
+        "emotional progressive techno",
+        "bilingual Persian-English rap vocals",
+        "uplifting dance anthem",
+        "metro club energy",
+        "soulful female backing vocals",
+        "atmospheric pads",
+        "deep bass",
+        "festival emotional drop",
+        "techno",
+        "soulful",
+        "uplifting",
+        "emotional",
+        "deep",
+        "funk"
+      ]
+    }
+  },
+  {
+    "id": "az-payan-ta-aghaz-from-ashes-we-rise",
+    "type": "music",
+    "title": "Az Payan ta Aghaz / From Ashes We Rise” (feat. Eddie Farzad)",
+    "artist": "Borobeya Music",
+    "isrc": "QZMER2634908",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [],
+    "notes": "Confirm punctuation/quote mark before ASCAP registration.",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/az-payan-ta-aghaz-from-ashes-we-rise.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/az-payan-ta-aghaz-from-ashes-we-rise.json",
+      "length": 2516,
+      "updatedAt": "2026-07-13T19:36:49.651Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "https://suno.com/song/55dacddc-2c68-4042-850a-3db6fa660fe5",
+      "styleTags": [
+        "rap",
+        "cinematic hip-hop",
+        "dual vocals",
+        "emotional",
+        "poetic",
+        "vocal",
+        "male vocals",
+        "ambient",
+        "hip-hop"
+      ]
+    }
+  },
+  {
+    "id": "freedom-rising",
+    "type": "music",
+    "title": "Freedom Rising",
+    "artist": "Borobeya Music",
+    "isrc": "QZMEQ2623498",
+    "status": "released",
+    "priority": 2,
+    "tags": [
+      "release",
+      "distrokid",
+      "youtube"
+    ],
+    "rights": {
+      "writer": "ARDAVAN FARZAD",
+      "writerSplit": 100,
+      "publisher": "BOROBEYA",
+      "publisherSplit": 100,
+      "ascapStatus": "blocked-waiting-ein-tin-match",
+      "ascapWorkId": ""
+    },
+    "media": [
+      {
+        "id": "media-mrjm4e86-8whhdm",
+        "kind": "cover",
+        "label": "https://cdn2.suno.ai/e38ac3a0-08fb-4b56-a59a-b010c2f1af86_b49b68fc.jpeg",
+        "url": "https://cdn2.suno.ai/e38ac3a0-08fb-4b56-a59a-b010c2f1af86_b49b68fc.jpeg",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T19:25:47.142Z"
+      },
+      {
+        "id": "media-mrjm53xe-mo0iac",
+        "kind": "video",
+        "label": "https://www.youtube.com/watch?v=Hje-UYyt-bk&list=RDHje-UYyt-bk&start_radio=1",
+        "url": "https://www.youtube.com/watch?v=Hje-UYyt-bk&list=RDHje-UYyt-bk&start_radio=1",
+        "notes": "",
+        "prompt": "",
+        "addedAt": "2026-07-13T19:26:20.450Z"
+      }
+    ],
+    "notes": "Found in DistroKid and YouTube.",
+    "lyrics": {
+      "path": "/home/efarzad/borobeya-assets/lyrics/freedom-rising.txt",
+      "metaPath": "/home/efarzad/borobeya-assets/lyrics/freedom-rising.json",
+      "length": 1249,
+      "updatedAt": "2026-07-13T19:25:55.617Z",
+      "source": "manual-suno-paste",
+      "sourceUrl": "https://suno.com/song/e38ac3a0-08fb-4b56-a59a-b010c2f1af86",
+      "styleTags": [
+        "rap",
+        "progressive",
+        "house",
+        "funk",
+        "funk"
+      ]
+    }
+  }
+]

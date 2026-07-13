@@ -1,0 +1,66 @@
+[
+  {
+    "id": "catalog-assets",
+    "name": "Catalog all music, video, and media",
+    "lane": "Assets",
+    "status": "active",
+    "description": "Keep every track, ISRC, platform URL, cover image, audio master, video, short, lyric file, and campaign asset attached to one catalog item.",
+    "actions": ["Import DistroKid releases", "Attach YouTube/Apple/iHeart URLs", "Upload media files", "Tag campaign priority", "Flag missing art/video/lyrics"]
+  },
+  {
+    "id": "create-music",
+    "name": "Create music workflow",
+    "lane": "Creation",
+    "status": "planned",
+    "description": "Track song idea, lyrics, stems, final master, cover, distributor upload, and release metadata from concept to release.",
+    "actions": ["Idea brief", "Lyrics", "Arrangement", "Master", "Cover art", "DistroKid upload", "Metadata QA"]
+  },
+  {
+    "id": "shorts-video-factory",
+    "name": "Short-video ad factory",
+    "lane": "Video",
+    "status": "active",
+    "description": "Generate 15, 30, and 45 second commercial-style clips for YouTube Shorts and ads.",
+    "actions": ["Pick hook", "Write 3 scripts", "Generate visuals", "Render vertical video", "Caption", "Upload", "Track view/subscriber lift"]
+  },
+  {
+    "id": "youtube-growth",
+    "name": "YouTube growth engine",
+    "lane": "Audience",
+    "status": "active",
+    "description": "Optimize titles, descriptions, thumbnails, playlists, CTAs, and subscriber conversion loops.",
+    "actions": ["Title variants", "Description template", "Pinned comment", "Playlist mapping", "Thumbnail QA", "Subscriber CTA"]
+  },
+  {
+    "id": "google-ads",
+    "name": "Google Ads ROI loop",
+    "lane": "Ads",
+    "status": "planned",
+    "description": "Launch small tests only after video assets and channel plumbing are ready; measure cost per subscriber and watch quality.",
+    "actions": ["Campaign brief", "Audience tests", "Creative tests", "Budget guardrails", "ROI report", "Scale winners"]
+  },
+  {
+    "id": "amazon-store",
+    "name": "Amazon brand/store setup",
+    "lane": "Sales",
+    "status": "blocked",
+    "description": "Brand and store setup is waiting on EIN/TIN matching or manual verification.",
+    "actions": ["Confirm legal name", "Upload EIN letter if requested", "Brand assets", "Storefront copy", "Product/merch mapping"]
+  },
+  {
+    "id": "ascap-rights",
+    "name": "ASCAP publisher and work registration",
+    "lane": "Royalties",
+    "status": "blocked",
+    "description": "Publisher account is blocked until IRS/TINCheck recognizes the new EIN, expected up to 14 days from issue.",
+    "actions": ["Retry EIN after day 14", "Create publisher account", "Register works", "Capture ASCAP work IDs", "Update tracker/DB"]
+  },
+  {
+    "id": "sales-tools",
+    "name": "Sales and fan funnel tools",
+    "lane": "Sales",
+    "status": "planned",
+    "description": "Connect music assets to merch, email capture, store pages, landing pages, and retargeting audiences.",
+    "actions": ["Landing page", "Email CTA", "Merch SKU ideas", "Pixel checklist", "Campaign offers"]
+  }
+]

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Borobeya Control Center</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Borobeya Music</p>
+        <h1>Control Center</h1>
+        <p class="sub">Catalog, media, vector search, action scripts, ads, sales, and royalty plumbing in one place.</p>
+      </div>
+      <div class="status-pill">IRS/TIN wait mode</div>
+    </header>
+
+    <main>
+      <section id="summary" class="grid cards"></section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Fast vector search</p>
+            <h2>Ask the catalog</h2>
+          </div>
+          <input id="search" placeholder="Try: shorts candidates, ASCAP blocked, mango, YouTube..." />
+        </div>
+        <div id="searchResults" class="results"></div>
+      </section>
+
+      <section class="panel lyrics-panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Record editor</p>
+            <h2 id="editorTitle">Select a record</h2>
+            <p class="muted">Click a catalog record, Lyrics, Styles, Audio, Cover, Video, or Links to load that song here.</p>
+          </div>
+        </div>
+        <div class="editor-grid">
+          <form id="lyricsForm" class="lyrics-form">
+            <label>
+              Released catalog title
+              <select id="lyricsTrack"></select>
+            </label>
+            <label>
+              Suno URL or source note
+              <input id="lyricsSourceUrl" placeholder="https://suno.com/song/... or manual note" />
+            </label>
+            <label class="lyrics-textarea">
+              Styles / prompt notes
+              <textarea id="lyricsStyleTags" placeholder="modern deep house, funky house, 124 BPM..." rows="4"></textarea>
+            </label>
+            <label class="lyrics-textarea">
+              Lyrics
+              <textarea id="lyricsText" placeholder="Paste or load the correct lyrics here from Suno..." rows="12"></textarea>
+            </label>
+            <div class="lyrics-actions">
+              <button type="submit">Save lyrics + styles</button>
+              <button id="clearLyricsForm" type="button">Clear editor</button>
+              <span id="lyricsStatus" class="muted"></span>
+            </div>
+          </form>
+
+          <form id="mediaForm" class="media-form">
+            <label>
+              Media type
+              <select id="mediaKind">
+                <option value="audio">Audio / MP3 / WAV</option>
+                <option value="video">Video / MP4 / YouTube</option>
+                <option value="album-cover">Album cover generation</option>
+                <option value="cover">Other cover / image</option>
+                <option value="link">Source / platform link</option>
+              </select>
+            </label>
+            <label>
+              Display name / file name
+              <input id="mediaLabel" placeholder="cover-v1.png, song-master.mp3, Suno MP4..." />
+            </label>
+            <label>
+              URL or path
+              <input id="mediaUrl" placeholder="https://... or /assets/covers/track-cover-v1.png" />
+            </label>
+            <label>
+              Notes
+              <input id="mediaNotes" placeholder="Suno source, backup copy, final master..." />
+            </label>
+            <label class="media-prompt">
+              Album cover prompt / edit notes
+              <textarea id="mediaPrompt" placeholder="Describe the cover generation prompt, revision notes, or what to edit next..." rows="5"></textarea>
+            </label>
+            <div id="coverGallery" class="cover-gallery muted">No record selected.</div>
+            <div id="mediaList" class="media-list muted">No record selected.</div>
+            <div class="lyrics-actions">
+              <button type="submit">Add media/link</button>
+              <button id="clearMediaForm" type="button">Clear media fields</button>
+              <span id="mediaStatus" class="muted"></span>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="two-col">
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Music + media</p>
+              <h2>Catalog</h2>
+            </div>
+            <select id="priorityFilter">
+              <option value="">All priorities</option>
+              <option value="1">Priority 1</option>
+              <option value="2">Priority 2</option>
+            </select>
+          </div>
+          <div id="catalog" class="catalog"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">A-Z workflow</p>
+              <h2>Action scripts</h2>
+            </div>
+          </div>
+          <div id="workflows" class="workflows"></div>
+        </div>
+      </section>
+    </main>
+
+    <template id="itemTemplate">
+      <article class="item">
+        <div class="item-main">
+          <span class="badge"></span>
+          <h3></h3>
+          <p></p>
+        </div>
+        <button>Open</button>
+      </article>
+    </template>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
