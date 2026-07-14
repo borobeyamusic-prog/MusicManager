@@ -268,6 +268,13 @@ function clearMediaForm() {
   $("#mediaStatus").textContent = "";
 }
 
+function clearImportForm() {
+  $("#importSource").value = "distrokid";
+  $("#importSourceUrl").value = "";
+  $("#importContent").value = "";
+  $("#importStatus").textContent = "";
+}
+
 async function refreshDashboard() {
   const dashboard = await api("/api/dashboard");
   renderSummary(dashboard);
@@ -475,6 +482,34 @@ async function submitMedia(event) {
   }
 }
 
+async function submitImport(event) {
+  event.preventDefault();
+  const content = $("#importContent").value.trim();
+  if (!content) {
+    $("#importStatus").textContent = "Paste a catalog export first.";
+    return;
+  }
+
+  try {
+    $("#importStatus").textContent = "Updating catalog...";
+    const result = await api("/api/catalog/import", {
+      method: "POST",
+      body: JSON.stringify({
+        source: $("#importSource").value,
+        sourceUrl: $("#importSourceUrl").value.trim(),
+        content
+      })
+    });
+
+    $("#importStatus").textContent = `Imported ${result.total} row${result.total === 1 ? "" : "s"}: ${result.added} added, ${result.updated} updated, ${result.skipped} skipped.`;
+    $("#importContent").value = "";
+    await refreshDashboard();
+    await refreshCatalog();
+  } catch (error) {
+    $("#importStatus").textContent = `Import failed: ${error.message}`;
+  }
+}
+
 async function deleteMedia(id, mediaKey) {
   try {
     $("#mediaStatus").textContent = "Deleting album cover...";
@@ -503,6 +538,8 @@ async function boot() {
   renderWorkflows(workflows);
 
   $("#priorityFilter").addEventListener("change", refreshCatalog);
+  $("#importForm").addEventListener("submit", submitImport);
+  $("#clearImportForm").addEventListener("click", clearImportForm);
   $("#lyricsForm").addEventListener("submit", submitLyrics);
   $("#clearLyricsForm").addEventListener("click", () => clearLyricsForm({ keepTrack: true }));
   $("#mediaForm").addEventListener("submit", submitMedia);

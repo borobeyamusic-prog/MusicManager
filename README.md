@@ -33,6 +33,7 @@ npm run check
 - `GET /api/dashboard`
 - `GET /api/catalog`
 - `GET /api/catalog/:id`
+- `POST /api/catalog/import`
 - `POST /api/catalog/:id/media`
 - `GET /api/workflows`
 - `GET /api/search?q=shorts`
@@ -40,11 +41,12 @@ npm run check
 
 ## Next build steps
 
-1. Add file upload and media storage.
-2. Add login for private access on the server.
-3. Add SQLite or LanceDB/Qdrant backend if the catalog grows beyond local JSON.
-4. Add action runners for YouTube/Google Ads/Amazon/ASCAP tasks.
-5. Deploy to the Node host at `192.168.200.179`.
+1. Add authenticated source connectors for DistroKid, Suno, YouTube, and Google Sheets.
+2. Add file upload and media storage.
+3. Add login for private access on the server.
+4. Add SQLite or LanceDB/Qdrant backend if the catalog grows beyond local JSON.
+5. Add action runners for YouTube/Google Ads/Amazon/ASCAP tasks.
+6. Deploy to the Node host at `192.168.200.179`.
 
 ## Deploy to `192.168.200.179`
 

@@ -275,12 +275,13 @@ label { color: var(--muted); display: grid; gap: 8px; font-size: 13px; font-weig
   gap: 18px;
   align-items: start;
 }
-.lyrics-form, .media-form {
+.lyrics-form, .media-form, .import-form {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
 .lyrics-textarea { grid-column: 1 / -1; }
+.import-content { grid-column: 1 / -1; }
 .lyrics-actions {
   grid-column: 1 / -1;
   display: flex;
@@ -307,6 +308,13 @@ label { color: var(--muted); display: grid; gap: 8px; font-size: 13px; font-weig
   background: rgba(0,0,0,.16);
   border-radius: 18px;
   padding: 16px;
+}
+.update-panel {
+  border-color: rgba(94,229,162,.18);
+}
+.import-form textarea {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  min-height: 170px;
 }
 .media-form label,
 .media-list,
@@ -394,6 +402,6 @@ label { color: var(--muted); display: grid; gap: 8px; font-size: 13px; font-weig
 
 @media (max-width: 900px) {
   .hero { flex-direction: column; }
-  .cards, .two-col, .editor-grid, .lyrics-form, .media-form { grid-template-columns: 1fr; }
+  .cards, .two-col, .editor-grid, .lyrics-form, .media-form, .import-form { grid-template-columns: 1fr; }
   .panel-head { align-items: stretch; flex-direction: column; }
 }

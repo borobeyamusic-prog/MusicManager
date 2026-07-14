@@ -17,6 +17,15 @@ const mime = {
 
 let state;
 
+function slugify(value) {
+  return String(value || "untitled")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 90) || "untitled";
+}
+
 function mediaId() {
   return `media-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
 }
@@ -31,6 +40,166 @@ async function bodyJson(req) {
   for await (const chunk of req) chunks.push(chunk);
   const raw = Buffer.concat(chunks).toString("utf8");
   return raw ? JSON.parse(raw) : {};
+}
+
+function parseDelimitedLine(line, delimiter) {
+  const values = [];
+  let current = "";
+  let quoted = false;
+  for (let index = 0; index < line.length; index += 1) {
+    const char = line[index];
+    const next = line[index + 1];
+    if (char === "\"" && quoted && next === "\"") {
+      current += "\"";
+      index += 1;
+    } else if (char === "\"") {
+      quoted = !quoted;
+    } else if (char === delimiter && !quoted) {
+      values.push(current.trim());
+      current = "";
+    } else {
+      current += char;
+    }
+  }
+  values.push(current.trim());
+  return values;
+}
+
+function parseCatalogImport(payload) {
+  const raw = String(payload.content || "").trim();
+  if (!raw) throw new Error("Paste a CSV, TSV, or JSON export first.");
+
+  if (raw.startsWith("{") || raw.startsWith("[")) {
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed)) return parsed;
+    if (Array.isArray(parsed.tracks)) return parsed.tracks;
+    if (Array.isArray(parsed.catalog)) return parsed.catalog;
+    throw new Error("JSON import must be an array, or include tracks/catalog.");
+  }
+
+  const lines = raw.split(/\r?\n/).filter((line) => line.trim());
+  if (lines.length < 2) throw new Error("Delimited import needs a header row and at least one record.");
+  const delimiter = lines[0].includes("\t") ? "\t" : ",";
+  const headers = parseDelimitedLine(lines[0], delimiter).map((header) => slugify(header).replace(/-/g, "_"));
+  return lines.slice(1).map((line) => {
+    const values = parseDelimitedLine(line, delimiter);
+    return headers.reduce((record, header, index) => {
+      record[header] = values[index] || "";
+      return record;
+    }, {});
+  });
+}
+
+function pick(record, names) {
+  for (const name of names) {
+    if (record[name] !== undefined && record[name] !== null && String(record[name]).trim()) return String(record[name]).trim();
+  }
+  return "";
+}
+
+function splitTags(value) {
+  if (Array.isArray(value)) return value.map(String).map((tag) => tag.trim()).filter(Boolean);
+  return String(value || "")
+    .split(/[;,|]/)
+    .map((tag) => tag.trim())
+    .filter(Boolean);
+}
+
+function normalizeImportRecord(record, source, sourceUrl) {
+  const title = pick(record, ["title", "song_title", "track_title", "name", "release_title"]);
+  const isrc = pick(record, ["isrc", "isrc_code"]);
+  if (!title && !isrc) return null;
+
+  const id = pick(record, ["id", "slug", "track_id"]) || slugify(title || isrc);
+  const tags = new Set([
+    "imported",
+    source,
+    ...splitTags(record.tags),
+    ...splitTags(record.platforms),
+    ...splitTags(record.stores)
+  ].filter(Boolean));
+
+  const rights = {
+    writer: pick(record, ["writer", "songwriter", "writers"]) || "ARDAVAN FARZAD",
+    writerSplit: Number(pick(record, ["writer_split", "writer_split_percent"]) || 100),
+    publisher: pick(record, ["publisher"]) || "BOROBEYA",
+    publisherSplit: Number(pick(record, ["publisher_split", "publisher_split_percent"]) || 100),
+    ascapStatus: pick(record, ["ascap_status"]) || "blocked-waiting-ein-tin-match",
+    ascapWorkId: pick(record, ["ascap_work_id", "work_id"])
+  };
+
+  return {
+    id,
+    type: pick(record, ["type"]) || "music",
+    title: title || isrc,
+    artist: pick(record, ["artist", "primary_artist"]) || "Borobeya Music",
+    isrc,
+    status: pick(record, ["status"]) || "released",
+    priority: Number(pick(record, ["priority"]) || 2),
+    tags: [...tags],
+    rights,
+    media: Array.isArray(record.media) ? record.media : [],
+    notes: pick(record, ["notes", "note", "description"]),
+    source: {
+      name: source,
+      url: sourceUrl || "",
+      importedAt: new Date().toISOString()
+    }
+  };
+}
+
+function mergeCatalogRecords(catalog, incomingRecords, source, sourceUrl) {
+  const byId = new Map(catalog.map((item, index) => [item.id, index]));
+  const byIsrc = new Map(catalog.filter((item) => item.isrc).map((item, index) => [String(item.isrc).toUpperCase(), index]));
+  const byTitle = new Map(catalog.map((item, index) => [String(item.title || "").toLowerCase(), index]));
+  const result = [...catalog];
+  const importedAt = new Date().toISOString();
+  const summary = { added: 0, updated: 0, skipped: 0, total: incomingRecords.length };
+
+  for (const rawRecord of incomingRecords) {
+    const incoming = normalizeImportRecord(rawRecord, source, sourceUrl);
+    if (!incoming) {
+      summary.skipped += 1;
+      continue;
+    }
+
+    const index = byId.has(incoming.id)
+      ? byId.get(incoming.id)
+      : incoming.isrc && byIsrc.has(incoming.isrc.toUpperCase())
+        ? byIsrc.get(incoming.isrc.toUpperCase())
+        : byTitle.get(String(incoming.title || "").toLowerCase());
+
+    if (index === undefined) {
+      result.push(incoming);
+      byId.set(incoming.id, result.length - 1);
+      if (incoming.isrc) byIsrc.set(incoming.isrc.toUpperCase(), result.length - 1);
+      byTitle.set(String(incoming.title || "").toLowerCase(), result.length - 1);
+      summary.added += 1;
+      continue;
+    }
+
+    const existing = result[index];
+    result[index] = {
+      ...existing,
+      artist: incoming.artist || existing.artist,
+      isrc: incoming.isrc || existing.isrc,
+      status: incoming.status || existing.status,
+      priority: incoming.priority || existing.priority,
+      tags: [...new Set([...(existing.tags || []), ...(incoming.tags || [])])],
+      rights: { ...(existing.rights || {}), ...(incoming.rights || {}) },
+      media: [...(existing.media || []), ...(incoming.media || [])],
+      notes: incoming.notes ? [existing.notes, incoming.notes].filter(Boolean).join(" | ") : existing.notes,
+      source: {
+        ...(existing.source || {}),
+        latestImport: source,
+        latestImportUrl: sourceUrl || "",
+        importedAt
+      }
+    };
+    summary.updated += 1;
+  }
+
+  return { catalog: result, summary };
 }
 
 async function staticFile(req, res) {
@@ -159,6 +328,17 @@ const server = http.createServer(async (req, res) => {
       await saveCatalog(state.catalog);
       state = await loadState();
       return send(res, 201, { item, lyrics });
+    }
+
+    if (req.method === "POST" && url.pathname === "/api/catalog/import") {
+      const payload = await bodyJson(req);
+      const source = payload.source || "manual-import";
+      const sourceUrl = payload.sourceUrl || "";
+      const incoming = parseCatalogImport(payload);
+      const merged = mergeCatalogRecords(state.catalog, incoming, source, sourceUrl);
+      await saveCatalog(merged.catalog);
+      state = await loadState();
+      return send(res, 200, { ok: true, ...merged.summary, summary: summarize(state.catalog, state.workflows) });
     }
 
     if (req.method === "GET" && url.pathname === "/api/workflows") {

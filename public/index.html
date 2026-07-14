@@ -30,6 +30,39 @@
         <div id="searchResults" class="results"></div>
       </section>
 
+      <section class="panel update-panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Catalog updater</p>
+            <h2>Import new titles</h2>
+          </div>
+        </div>
+        <form id="importForm" class="import-form">
+          <label>
+            Source
+            <select id="importSource">
+              <option value="distrokid">DistroKid</option>
+              <option value="suno">Suno</option>
+              <option value="youtube">YouTube</option>
+              <option value="manual-import">Manual import</option>
+            </select>
+          </label>
+          <label>
+            Source URL or note
+            <input id="importSourceUrl" placeholder="DistroKid export, Suno API task, playlist, or sheet URL" />
+          </label>
+          <label class="import-content">
+            CSV, TSV, or JSON
+            <textarea id="importContent" placeholder="title,isrc,artist,status,priority,tags,notes" rows="8"></textarea>
+          </label>
+          <div class="lyrics-actions">
+            <button type="submit">Update catalog</button>
+            <button id="clearImportForm" type="button">Clear import</button>
+            <span id="importStatus" class="muted"></span>
+          </div>
+        </form>
+      </section>
+
       <section class="panel lyrics-panel">
         <div class="panel-head">
           <div>
