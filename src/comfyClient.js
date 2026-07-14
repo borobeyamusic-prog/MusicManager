@@ -3,6 +3,7 @@ const http = require("http");
 const https = require("https");
 
 const defaultBaseUrl = process.env.COMFYUI_BASE_URL || "http://192.168.200.171:8188";
+const videoBaseUrl = process.env.COMFYUI_VIDEO_BASE_URL || "http://192.168.200.175:8188";
 
 function randomId() {
   if (typeof crypto.randomUUID === "function") return crypto.randomUUID();
@@ -20,8 +21,8 @@ function slugify(value) {
     .slice(0, 90) || "untitled";
 }
 
-function publicComfyUrl(path, params = {}) {
-  const url = new URL(path, defaultBaseUrl);
+function publicComfyUrl(path, params = {}, baseUrl = defaultBaseUrl) {
+  const url = new URL(path, baseUrl);
   Object.entries(params).forEach(([key, value]) => {
     if (value !== undefined && value !== null && value !== "") url.searchParams.set(key, value);
   });
@@ -168,7 +169,7 @@ function requestJson(url, options = {}) {
 }
 
 async function comfyFetch(path, options = {}) {
-  const url = new URL(path, defaultBaseUrl);
+  const url = new URL(path, options.baseUrl || defaultBaseUrl);
   const response = await requestJson(url, options);
   const body = response.body;
   if (!response.ok) {
@@ -187,14 +188,22 @@ async function queuePrompt(prompt) {
   });
 }
 
-async function getHistory(promptId) {
-  return comfyFetch(`/history/${encodeURIComponent(promptId)}`);
+async function queuePromptTo(baseUrl, prompt) {
+  return comfyFetch("/prompt", {
+    baseUrl,
+    method: "POST",
+    body: JSON.stringify({ prompt, client_id: clientId })
+  });
 }
 
-async function waitForImages(promptId, { timeoutMs = 10 * 60 * 1000, pollMs = 1500 } = {}) {
+async function getHistory(promptId, baseUrl = defaultBaseUrl) {
+  return comfyFetch(`/history/${encodeURIComponent(promptId)}`, { baseUrl });
+}
+
+async function waitForImages(promptId, { timeoutMs = 10 * 60 * 1000, pollMs = 1500, baseUrl = defaultBaseUrl } = {}) {
   const started = Date.now();
   while (Date.now() - started < timeoutMs) {
-    const history = await getHistory(promptId);
+    const history = await getHistory(promptId, baseUrl);
     const entry = history[promptId];
     if (entry) {
       if (entry.status && entry.status.status_str === "error") {
@@ -211,7 +220,7 @@ async function waitForImages(promptId, { timeoutMs = 10 * 60 * 1000, pollMs = 15
             filename: image.filename,
             subfolder: image.subfolder || "",
             type: image.type || "output"
-          })
+          }, baseUrl)
         }));
       if (images.length) return images;
     }
@@ -242,11 +251,39 @@ async function checkHealth() {
   };
 }
 
+async function checkVideoHealth() {
+  const [systemStats, objectInfo] = await Promise.all([
+    comfyFetch("/system_stats", { baseUrl: videoBaseUrl }),
+    comfyFetch("/object_info", { baseUrl: videoBaseUrl })
+  ]);
+  const required = [
+    ["CheckpointLoaderSimple", "ckpt_name", "ltx-2.3-22b-dev-fp8.safetensors"],
+    ["CheckpointLoaderSimple", "ckpt_name", "ltx-2.3-22b-distilled-fp8.safetensors"],
+    ["LoraLoader", "lora_name", "ltx-2.3-22b-distilled-lora-384.safetensors"],
+    ["CLIPLoader", "clip_name", "gemma_3_12B_it_fp4_mixed.safetensors"]
+  ].map(([node, input, expected]) => {
+    const values = (((objectInfo[node] || {}).input || {}).required || {})[input];
+    const choices = Array.isArray(values) && Array.isArray(values[0]) ? values[0] : [];
+    return { node, input, expected, found: choices.includes(expected) };
+  });
+  return {
+    baseUrl: videoBaseUrl,
+    systemStats,
+    required,
+    ready: required.every((item) => item.found)
+  };
+}
+
 module.exports = {
   buildAlbumPrompt,
   buildZImageTurboPrompt,
   checkHealth,
+  checkVideoHealth,
+  comfyFetch,
+  defaultBaseUrl,
+  videoBaseUrl,
   queuePrompt,
+  queuePromptTo,
   slugify,
   waitForImages
 };

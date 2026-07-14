@@ -584,6 +584,7 @@ function renderVideoProject(project, item) {
     return;
   }
 
+  const mediaById = new Map((item.media || []).map((entry) => [entry.id, entry]));
   $("#videoSections").innerHTML = sections.map((section) => `
     <article class="video-section">
       <header>
@@ -599,6 +600,11 @@ function renderVideoProject(project, item) {
         ${(section.scenes || []).map((scene) => `
           <article class="scene-card">
             <strong>Scene ${escapeHtml(scene.order || "")}: ${escapeHtml(scene.storyBeat || "Story beat TBD")}</strong>
+            ${scene.generatedImageMediaId && mediaById.has(scene.generatedImageMediaId) ? `
+              <a class="scene-preview" href="${escapeHtml(mediaById.get(scene.generatedImageMediaId).url || mediaById.get(scene.generatedImageMediaId).path || "#")}" target="_blank" rel="noreferrer">
+                <img src="${escapeHtml(mediaById.get(scene.generatedImageMediaId).url || mediaById.get(scene.generatedImageMediaId).path || "")}" alt="${escapeHtml(scene.storyBeat || "Generated scene still")}" loading="lazy" />
+              </a>
+            ` : ""}
             <div class="scene-meta">
               ${sceneStatusBadge(scene.status)}
               <span>${Number(scene.durationSeconds || 0)} sec</span>
@@ -609,11 +615,18 @@ function renderVideoProject(project, item) {
             ${scene.cameraMotion ? `<small>Camera: ${escapeHtml(scene.cameraMotion)}</small>` : ""}
             ${scene.imagePrompt ? `<small>Image: ${escapeHtml(scene.imagePrompt)}</small>` : ""}
             ${scene.videoPrompt ? `<small>Video: ${escapeHtml(scene.videoPrompt)}</small>` : ""}
+            <div class="scene-actions">
+              <button class="mini-button generate-scene-image" data-scene-id="${escapeHtml(scene.id)}" type="button">Generate still on .171</button>
+              <button class="mini-button generate-scene-video" data-scene-id="${escapeHtml(scene.id)}" type="button" disabled>Generate video on .175 next</button>
+            </div>
           </article>
         `).join("")}
       </div>
     </article>
   `).join("");
+  document.querySelectorAll(".generate-scene-image").forEach((button) => {
+    button.addEventListener("click", () => generateSceneImage(button.dataset.sceneId));
+  });
 }
 
 async function loadVideoProject({ silent = false } = {}) {
@@ -702,6 +715,27 @@ async function addSceneToVideoProject() {
     $("#videoProjectStatusText").textContent = `Added scene ${data.scene.order} to ${data.item.title}.`;
   } catch (error) {
     $("#videoProjectStatusText").textContent = `Add scene failed: ${error.message}`;
+  }
+}
+
+async function generateSceneImage(sceneId) {
+  const id = selectedTrackId();
+  if (!id) {
+    $("#videoProjectStatusText").textContent = "Pick or click a catalog record first.";
+    return;
+  }
+  try {
+    $("#videoProjectStatusText").textContent = "Submitting scene still to .171 Z-Image Turbo...";
+    const data = await api(`/api/catalog/${encodeURIComponent(id)}/video-project/scenes/${encodeURIComponent(sceneId)}/generate-image`, {
+      method: "POST",
+      body: JSON.stringify({})
+    });
+    renderVideoProject(data.project, data.item);
+    renderMediaList(data.item);
+    $("#videoProjectStatusText").textContent = `Generated scene still and saved media: ${data.media.label}.`;
+  } catch (error) {
+    $("#videoProjectStatusText").textContent = `Scene still failed: ${error.message}`;
+    await loadVideoProject({ silent: true });
   }
 }
 
