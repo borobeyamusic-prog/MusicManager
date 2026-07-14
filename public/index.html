@@ -131,6 +131,51 @@
               <span id="mediaStatus" class="muted"></span>
             </div>
           </form>
+
+          <form id="comfyForm" class="comfy-form">
+            <div>
+              <p class="eyebrow">ComfyUI album engine</p>
+              <h3>Generate covers from this record</h3>
+              <p class="muted">Uses ComfyUI Z-Image Turbo on <code>192.168.200.171:8188</code>. Finished images are saved back as album-cover media.</p>
+            </div>
+            <div class="comfy-grid">
+              <label>
+                How many
+                <input id="comfyCount" type="number" min="1" max="50" value="4" />
+              </label>
+              <label>
+                Width
+                <input id="comfyWidth" type="number" min="256" max="2048" step="64" value="1024" />
+              </label>
+              <label>
+                Height
+                <input id="comfyHeight" type="number" min="256" max="2048" step="64" value="1024" />
+              </label>
+              <label>
+                Steps
+                <input id="comfySteps" type="number" min="1" max="60" value="8" />
+              </label>
+            </div>
+            <label>
+              Optional seed
+              <input id="comfySeed" type="number" min="1" placeholder="Leave blank for random batch seed" />
+            </label>
+            <label class="media-prompt prompt-workbench">
+              Prompt generator / editor
+              <textarea id="comfyPrompt" placeholder="Build from album, paste a prompt, or write one here. This exact prompt is sent to ComfyUI." rows="9"></textarea>
+            </label>
+            <div class="prompt-tools">
+              <button id="buildComfyPrompt" type="button">Build from album</button>
+              <button id="copyComfyPrompt" type="button">Copy prompt</button>
+              <button id="pasteComfyPrompt" type="button">Paste prompt</button>
+              <button id="clearComfyPrompt" type="button">Clear prompt</button>
+            </div>
+            <div class="lyrics-actions">
+              <button type="submit">Generate album covers</button>
+              <button id="checkComfyHealth" type="button">Check ComfyUI</button>
+              <span id="comfyStatus" class="muted"></span>
+            </div>
+          </form>
         </div>
       </section>
 

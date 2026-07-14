@@ -110,7 +110,7 @@ function assetCounts(item) {
 }
 
 function albumCovers(item) {
-  return (item.media || []).filter((entry) => entry.kind === "album-cover").slice(0, 4);
+  return (item.media || []).filter((entry) => entry.kind === "album-cover");
 }
 
 function renderCoverPreview(item) {
@@ -118,9 +118,9 @@ function renderCoverPreview(item) {
   if (!covers.length) return "";
   return `
     <div class="cover-preview">
-      <span>Album covers (${covers.length}/4)</span>
+      <span>Album covers (${covers.length})</span>
       <div>
-        ${covers.map((cover) => `
+        ${covers.slice(0, 4).map((cover) => `
           <a href="${escapeHtml(cover.url || cover.path || "#")}" target="_blank" rel="noreferrer">
             ${cover.url || cover.path ? `<img src="${escapeHtml(cover.url || cover.path)}" alt="${escapeHtml(cover.label || "Album cover")}" loading="lazy" />` : ""}
             <small>${escapeHtml(cover.label || "Album cover")}</small>
@@ -348,6 +348,7 @@ async function loadRecord(id, section = "record") {
   $("#mediaKind").value = mediaKindForSection(section);
   renderMediaList(item);
   renderCoverGallery(item);
+  loadComfyDefaults(item);
 
   if (section === "lyrics" || section === "styles" || section === "record") {
     if (item.lyrics) {
@@ -415,13 +416,12 @@ function renderMediaList(item) {
 
 function renderCoverGallery(item) {
   const covers = albumCovers(item);
-  const remaining = Math.max(0, 4 - covers.length);
   if (!covers.length) {
-    $("#coverGallery").innerHTML = `<p>No album cover generations saved yet for ${escapeHtml(item.title)}. You can add up to 4.</p>`;
+    $("#coverGallery").innerHTML = `<p>No album cover generations saved yet for ${escapeHtml(item.title)}.</p>`;
     return;
   }
   $("#coverGallery").innerHTML = `
-    <p>Album cover generations: ${covers.length}/4 ${remaining ? `· ${remaining} slot${remaining === 1 ? "" : "s"} open` : "· full"}</p>
+    <p>Album cover generations: ${covers.length}</p>
     <div class="cover-grid">
       ${covers.map((cover, index) => `
         <article class="cover-card">
@@ -437,6 +437,82 @@ function renderCoverGallery(item) {
   document.querySelectorAll(".delete-cover").forEach((button) => {
     button.addEventListener("click", () => deleteMedia(item.id, button.dataset.mediaKey));
   });
+}
+
+function defaultComfyPrompt(item) {
+  if (!item) return "";
+  const styleTags = item.lyrics && Array.isArray(item.lyrics.styleTags) ? item.lyrics.styleTags.join(", ") : "";
+  return [
+    `Album cover artwork for "${item.title}" by ${item.artist || "Borobeya Music"}.`,
+    item.notes ? `Song notes: ${item.notes}.` : "",
+    styleTags ? `Music style: ${styleTags}.` : "",
+    Array.isArray(item.tags) && item.tags.length ? `Catalog tags: ${item.tags.join(", ")}.` : "",
+    "Square album art, no text, no logo.",
+    "Cinematic luxury lighting, bold central subject, premium editorial composition.",
+    "Make it emotionally match the song title and feel ready for streaming platforms.",
+    "Highly detailed, polished, dramatic, modern."
+  ].filter(Boolean).join("\n");
+}
+
+function selectedCatalogItem() {
+  const id = activeTrackId || $("#lyricsTrack").value;
+  return catalogCache.find((entry) => entry.id === id);
+}
+
+function buildComfyPromptFromSelection({ force = true } = {}) {
+  const item = selectedCatalogItem();
+  if (!item) {
+    $("#comfyStatus").textContent = "Pick or click a catalog record first.";
+    return "";
+  }
+  const prompt = defaultComfyPrompt(item);
+  if (force || !$("#comfyPrompt").value.trim()) {
+    $("#comfyPrompt").value = prompt;
+  }
+  $("#comfyStatus").textContent = `Prompt built for ${item.title}. Edit it, then generate.`;
+  return prompt;
+}
+
+async function copyComfyPrompt() {
+  const prompt = $("#comfyPrompt").value.trim();
+  if (!prompt) {
+    $("#comfyStatus").textContent = "Nothing to copy yet. Build or paste a prompt first.";
+    return;
+  }
+  try {
+    await navigator.clipboard.writeText(prompt);
+    $("#comfyStatus").textContent = "Prompt copied to clipboard.";
+  } catch {
+    $("#comfyStatus").textContent = "Copy was blocked by the browser. Select the prompt text and press Cmd+C.";
+  }
+}
+
+async function pasteComfyPrompt() {
+  try {
+    const text = await navigator.clipboard.readText();
+    if (!text.trim()) {
+      $("#comfyStatus").textContent = "Clipboard is empty.";
+      return;
+    }
+    $("#comfyPrompt").value = text;
+    $("#comfyStatus").textContent = "Prompt pasted. Edit it, then generate.";
+  } catch {
+    $("#comfyStatus").textContent = "Paste was blocked by the browser. Click in the prompt box and press Cmd+V.";
+    $("#comfyPrompt").focus();
+  }
+}
+
+function clearComfyPrompt() {
+  $("#comfyPrompt").value = "";
+  $("#comfyStatus").textContent = "Prompt cleared.";
+  $("#comfyPrompt").focus();
+}
+
+function loadComfyDefaults(item) {
+  if (!item) return;
+  if (!$("#comfyPrompt").value.trim()) {
+    $("#comfyPrompt").value = defaultComfyPrompt(item);
+  }
 }
 
 async function submitMedia(event) {
@@ -528,6 +604,81 @@ async function deleteMedia(id, mediaKey) {
   }
 }
 
+async function checkComfyHealth() {
+  try {
+    $("#comfyStatus").textContent = "Checking ComfyUI + required models...";
+    const health = await api("/api/comfy/health");
+    const missing = (health.required || []).filter((item) => !item.found).map((item) => item.expected);
+    $("#comfyStatus").textContent = health.ready
+      ? `ComfyUI ready at ${health.baseUrl}. Z-Image Turbo models found.`
+      : `ComfyUI reachable, but missing: ${missing.join(", ")}`;
+  } catch (error) {
+    $("#comfyStatus").textContent = `ComfyUI check failed: ${error.message}`;
+  }
+}
+
+async function pollComfyJob(jobId) {
+  const job = await api(`/api/comfy/jobs/${encodeURIComponent(jobId)}`);
+  const total = Number(job.count || 0);
+  const done = Number(job.completed || 0);
+  const failed = Number(job.failed || 0);
+  $("#comfyStatus").textContent = `${job.title}: ${job.status} · ${done}/${total} rendered${failed ? ` · ${failed} failed` : ""}`;
+
+  if (job.status === "queued" || job.status === "running") {
+    window.setTimeout(() => {
+      pollComfyJob(jobId).catch((error) => {
+        $("#comfyStatus").textContent = `ComfyUI status failed: ${error.message}`;
+      });
+    }, 2500);
+    return;
+  }
+
+  if (job.status === "completed") {
+    $("#comfyStatus").textContent = `${job.title}: generated ${job.results.length} image${job.results.length === 1 ? "" : "s"} and saved to catalog.`;
+  } else {
+    $("#comfyStatus").textContent = `${job.title}: generation failed. ${job.errors?.[0]?.message || ""}`;
+  }
+  await refreshDashboard();
+  await refreshCatalog();
+  if (activeTrackId) {
+    const item = await api(`/api/catalog/${encodeURIComponent(activeTrackId)}`);
+    renderMediaList(item);
+    renderCoverGallery(item);
+  }
+}
+
+async function submitComfy(event) {
+  event.preventDefault();
+  const id = activeTrackId || $("#lyricsTrack").value;
+  if (!id) {
+    $("#comfyStatus").textContent = "Pick or click a catalog record first.";
+    return;
+  }
+
+  const payload = {
+    count: Number($("#comfyCount").value || 4),
+    width: Number($("#comfyWidth").value || 1024),
+    height: Number($("#comfyHeight").value || 1024),
+    steps: Number($("#comfySteps").value || 8),
+    seed: $("#comfySeed").value ? Number($("#comfySeed").value) : undefined,
+    prompt: $("#comfyPrompt").value.trim()
+  };
+
+  try {
+    $("#comfyStatus").textContent = "Submitting ComfyUI batch...";
+    const job = await api(`/api/catalog/${encodeURIComponent(id)}/comfy/album-covers`, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    });
+    $("#comfyStatus").textContent = `${job.title}: queued ${job.count} image${job.count === 1 ? "" : "s"}.`;
+    pollComfyJob(job.id).catch((error) => {
+      $("#comfyStatus").textContent = `ComfyUI polling failed: ${error.message}`;
+    });
+  } catch (error) {
+    $("#comfyStatus").textContent = `ComfyUI submit failed: ${error.message}`;
+  }
+}
+
 async function boot() {
   const [dashboard, workflows] = await Promise.all([
     api("/api/dashboard"),
@@ -544,6 +695,12 @@ async function boot() {
   $("#clearLyricsForm").addEventListener("click", () => clearLyricsForm({ keepTrack: true }));
   $("#mediaForm").addEventListener("submit", submitMedia);
   $("#clearMediaForm").addEventListener("click", clearMediaForm);
+  $("#comfyForm").addEventListener("submit", submitComfy);
+  $("#checkComfyHealth").addEventListener("click", checkComfyHealth);
+  $("#buildComfyPrompt").addEventListener("click", () => buildComfyPromptFromSelection({ force: true }));
+  $("#copyComfyPrompt").addEventListener("click", copyComfyPrompt);
+  $("#pasteComfyPrompt").addEventListener("click", pasteComfyPrompt);
+  $("#clearComfyPrompt").addEventListener("click", clearComfyPrompt);
   $("#lyricsTrack").addEventListener("change", (event) => loadRecord(event.target.value, "record"));
   $("#search").addEventListener("input", async (event) => {
     const q = event.target.value.trim();
