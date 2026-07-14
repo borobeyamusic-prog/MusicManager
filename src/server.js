@@ -2,7 +2,7 @@ const http = require("http");
 const crypto = require("crypto");
 const { extname, join, resolve } = require("path");
 const { readFile } = require("fs").promises;
-const { loadState, queryState, saveCatalog, saveLyrics, readLyrics, summarize } = require("./store");
+const { loadState, queryState, saveCatalog, saveVideoProjects, saveLyrics, readLyrics, summarize } = require("./store");
 const {
   buildAlbumPrompt,
   buildZImageTurboPrompt,
@@ -242,6 +242,107 @@ function nextActionsForItem(item) {
   return actions;
 }
 
+function splitLyricsIntoSections(lyrics, count) {
+  const lines = String(lyrics || "")
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+  if (!lines.length) return Array.from({ length: count }, () => "");
+  const chunkSize = Math.max(1, Math.ceil(lines.length / count));
+  return Array.from({ length: count }, (_, index) => lines.slice(index * chunkSize, (index + 1) * chunkSize).join("\n"));
+}
+
+function defaultVideoSections(item, lyrics, sectionCount = 7, clipsPerSection = 3) {
+  const names = ["Intro", "Verse 1", "Chorus 1", "Verse 2", "Bridge", "Final Chorus", "Outro"];
+  const excerpts = splitLyricsIntoSections(lyrics, sectionCount);
+  const styleTags = item.lyrics && Array.isArray(item.lyrics.styleTags) ? item.lyrics.styleTags.join(", ") : "";
+  return Array.from({ length: sectionCount }, (_, index) => {
+    const name = names[index] || `Section ${index + 1}`;
+    const sceneCount = Math.max(1, Math.min(7, clipsPerSection));
+    const scenes = Array.from({ length: sceneCount }, (_, sceneIndex) => ({
+      id: `scene-${Date.now().toString(36)}-${index + 1}-${sceneIndex + 1}-${randomId().slice(0, 5)}`,
+      order: sceneIndex + 1,
+      durationSeconds: 8,
+      lyrics: sceneIndex === 0 ? excerpts[index] || "" : "",
+      storyBeat: sceneIndex === 0
+        ? `${name} establishes the emotional beat for "${item.title}".`
+        : `${name} variation ${sceneIndex + 1}: continue the visual idea with a new camera angle.`,
+      imagePrompt: [
+        `Music video scene still for "${item.title}" by ${item.artist || "Borobeya Music"}.`,
+        `Section: ${name}.`,
+        styleTags ? `Music style: ${styleTags}.` : "",
+        excerpts[index] ? `Lyric inspiration: ${excerpts[index].slice(0, 500)}` : "",
+        "cinematic, premium, emotionally expressive, no text, no logo, strong composition"
+      ].filter(Boolean).join(" "),
+      videoPrompt: [
+        `Animate this scene for the "${name}" section of "${item.title}".`,
+        "Create smooth cinematic motion, emotional pacing, music-video energy, and visual continuity.",
+        "Keep the subject coherent and avoid sudden identity changes."
+      ].join(" "),
+      negativePrompt: "text, logo, watermark, ugly, low quality, glitch, distorted hands, extra limbs, flicker",
+      cameraMotion: sceneIndex % 2 === 0 ? "slow dolly in with subtle parallax" : "slow orbit with atmospheric motion",
+      width: 768,
+      height: 512,
+      fps: 24,
+      seed: "",
+      sourceImageMediaId: "",
+      generatedImageMediaId: "",
+      generatedVideoMediaId: "",
+      targetWorker: sceneIndex === 0 ? ".171 still image" : ".175 image-to-video",
+      status: "planned"
+    }));
+    return {
+      id: `section-${Date.now().toString(36)}-${index + 1}-${randomId().slice(0, 5)}`,
+      order: index + 1,
+      name,
+      lyricRange: excerpts[index] ? `Auto chunk ${index + 1}` : "",
+      summary: `${name} for "${item.title}": turn the lyric mood into a clear visual story beat.`,
+      emotion: index === 0 ? "arrival / atmosphere" : index === sectionCount - 1 ? "resolution" : "build / motion",
+      durationSeconds: sceneCount * 8,
+      scenes
+    };
+  });
+}
+
+function findVideoProject(trackId) {
+  return (state.videoProjects || []).find((project) => project.catalogId === trackId);
+}
+
+function upsertVideoProject(project) {
+  state.videoProjects = state.videoProjects || [];
+  const index = state.videoProjects.findIndex((entry) => entry.id === project.id || entry.catalogId === project.catalogId);
+  if (index === -1) state.videoProjects.push(project);
+  else state.videoProjects[index] = project;
+  return project;
+}
+
+function baseVideoProject(item, payload = {}) {
+  const now = new Date().toISOString();
+  return {
+    id: `video-${item.id}`,
+    catalogId: item.id,
+    title: `${item.title} music video`,
+    targetDurationSeconds: clampNumber(payload.targetDurationSeconds, 180, 30, 600),
+    visualWorld: payload.visualWorld || `Cinematic Borobeya world for "${item.title}" with luxury, emotion, and modern music-video polish.`,
+    mainCharacters: payload.mainCharacters || "",
+    palette: payload.palette || "deep contrast, neon accents, premium editorial color, cinematic shadows",
+    cameraStyle: payload.cameraStyle || "slow dolly, parallax drift, orbit shots, dramatic close-ups",
+    status: "planning",
+    sections: [],
+    createdAt: now,
+    updatedAt: now
+  };
+}
+
+async function readLyricsSafely(item) {
+  if (!item || !item.lyrics || !item.lyrics.path) return "";
+  try {
+    return await readLyrics(item);
+  } catch {
+    return "";
+  }
+}
+
 function clampNumber(value, fallback, min, max) {
   const number = Number(value);
   if (!Number.isFinite(number)) return fallback;
@@ -395,6 +496,89 @@ const server = http.createServer(async (req, res) => {
       if (!item.lyrics || !item.lyrics.path) return send(res, 404, { error: "No lyrics saved for this track yet" });
       const lyrics = await readLyrics(item);
       return send(res, 200, { item, lyrics, meta: item.lyrics });
+    }
+
+    if (req.method === "GET" && url.pathname.startsWith("/api/catalog/") && url.pathname.endsWith("/video-project")) {
+      const parts = url.pathname.split("/");
+      const id = decodeURIComponent(parts[3]);
+      const item = state.catalog.find((entry) => entry.id === id);
+      if (!item) return send(res, 404, { error: "Catalog item not found" });
+      const project = findVideoProject(id);
+      return send(res, 200, { item, project });
+    }
+
+    if (req.method === "POST" && url.pathname.startsWith("/api/catalog/") && url.pathname.endsWith("/video-project")) {
+      const parts = url.pathname.split("/");
+      const id = decodeURIComponent(parts[3]);
+      const payload = await bodyJson(req);
+      const item = state.catalog.find((entry) => entry.id === id);
+      if (!item) return send(res, 404, { error: "Catalog item not found" });
+      const now = new Date().toISOString();
+      const existing = findVideoProject(id) || baseVideoProject(item, payload);
+      const project = {
+        ...existing,
+        title: payload.title || existing.title,
+        targetDurationSeconds: clampNumber(payload.targetDurationSeconds, existing.targetDurationSeconds || 180, 30, 600),
+        visualWorld: payload.visualWorld || existing.visualWorld,
+        mainCharacters: payload.mainCharacters || existing.mainCharacters,
+        palette: payload.palette || existing.palette,
+        cameraStyle: payload.cameraStyle || existing.cameraStyle,
+        status: payload.status || existing.status || "planning",
+        updatedAt: now
+      };
+      if (payload.draftSections) {
+        const lyrics = await readLyricsSafely(item);
+        project.sections = defaultVideoSections(
+          item,
+          lyrics,
+          clampNumber(payload.sectionCount, 7, 1, 9),
+          clampNumber(payload.clipsPerSection, 3, 1, 7)
+        );
+      } else if (Array.isArray(payload.sections)) {
+        project.sections = payload.sections;
+      }
+      upsertVideoProject(project);
+      await saveVideoProjects(state.videoProjects);
+      return send(res, 200, { item, project });
+    }
+
+    if (req.method === "POST" && url.pathname.startsWith("/api/catalog/") && url.pathname.endsWith("/video-project/scenes")) {
+      const parts = url.pathname.split("/");
+      const id = decodeURIComponent(parts[3]);
+      const payload = await bodyJson(req);
+      const item = state.catalog.find((entry) => entry.id === id);
+      if (!item) return send(res, 404, { error: "Catalog item not found" });
+      const project = findVideoProject(id) || upsertVideoProject(baseVideoProject(item, payload));
+      const sectionId = payload.sectionId || (project.sections[0] && project.sections[0].id);
+      const section = project.sections.find((entry) => entry.id === sectionId);
+      if (!section) return send(res, 400, { error: "Create or select a section before adding scenes." });
+      const order = (section.scenes || []).length + 1;
+      const scene = {
+        id: `scene-${Date.now().toString(36)}-${randomId().slice(0, 6)}`,
+        order,
+        durationSeconds: clampNumber(payload.durationSeconds, 8, 2, 60),
+        lyrics: payload.lyrics || "",
+        storyBeat: payload.storyBeat || `Scene ${order} for ${section.name}`,
+        imagePrompt: payload.imagePrompt || "",
+        videoPrompt: payload.videoPrompt || "",
+        negativePrompt: payload.negativePrompt || "text, logo, watermark, low quality, glitch",
+        cameraMotion: payload.cameraMotion || "slow cinematic dolly with subtle parallax",
+        width: clampNumber(payload.width, 768, 256, 2048),
+        height: clampNumber(payload.height, 512, 256, 2048),
+        fps: clampNumber(payload.fps, 24, 1, 60),
+        seed: payload.seed || "",
+        sourceImageMediaId: payload.sourceImageMediaId || "",
+        generatedImageMediaId: "",
+        generatedVideoMediaId: "",
+        targetWorker: payload.targetWorker || ".171 still image",
+        status: payload.status || "planned"
+      };
+      section.scenes = [...(section.scenes || []), scene];
+      section.durationSeconds = (section.scenes || []).reduce((total, entry) => total + Number(entry.durationSeconds || 0), 0);
+      project.updatedAt = new Date().toISOString();
+      upsertVideoProject(project);
+      await saveVideoProjects(state.videoProjects);
+      return send(res, 201, { item, project, scene });
     }
 
     if (req.method === "GET" && url.pathname.startsWith("/api/catalog/")) {

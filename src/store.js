@@ -6,6 +6,7 @@ const root = resolve(__dirname, "..");
 const catalogPath = resolve(root, "data/catalog.seed.json");
 const workflowsPath = resolve(root, "data/workflows.json");
 const runtimeCatalogPath = resolve(root, "data/catalog.runtime.json");
+const videoProjectsPath = resolve(root, "data/video-projects.runtime.json");
 const assetsRoot = process.env.BOROBEYA_ASSETS_DIR || resolve(root, "data/assets");
 const lyricsRoot = resolve(assetsRoot, "lyrics");
 
@@ -48,6 +49,7 @@ async function loadState() {
   }
 
   const workflows = await readJson(workflowsPath);
+  const videoProjects = await readJsonIfExists(videoProjectsPath) || [];
   const vectorIndex = buildIndex([
     ...catalog,
     ...workflows.map((workflow) => ({
@@ -60,7 +62,7 @@ async function loadState() {
     }))
   ]);
 
-  return { catalog, workflows, vectorIndex };
+  return { catalog, workflows, videoProjects, vectorIndex };
 }
 
 async function reconcileLyricsFromAssets(catalog) {
@@ -107,6 +109,10 @@ async function reconcileLyricsFromAssets(catalog) {
 
 async function saveCatalog(catalog) {
   await writeJson(runtimeCatalogPath, catalog);
+}
+
+async function saveVideoProjects(videoProjects) {
+  await writeJson(videoProjectsPath, videoProjects);
 }
 
 async function saveLyrics(item, lyrics, meta) {
@@ -167,4 +173,4 @@ function summarize(catalog, workflows) {
   };
 }
 
-module.exports = { loadState, saveCatalog, saveLyrics, readLyrics, queryState, summarize };
+module.exports = { loadState, saveCatalog, saveVideoProjects, saveLyrics, readLyrics, queryState, summarize };

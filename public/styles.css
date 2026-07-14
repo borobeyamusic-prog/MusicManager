@@ -275,7 +275,7 @@ label { color: var(--muted); display: grid; gap: 8px; font-size: 13px; font-weig
   gap: 18px;
   align-items: start;
 }
-.lyrics-form, .media-form, .import-form, .comfy-form {
+.lyrics-form, .media-form, .import-form, .comfy-form, .video-form {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
@@ -303,7 +303,7 @@ label { color: var(--muted); display: grid; gap: 8px; font-size: 13px; font-weig
   background: rgba(255,255,255,.1);
   color: var(--text);
 }
-.media-form, .comfy-form {
+.media-form, .comfy-form, .video-form {
   border: 1px solid rgba(255,255,255,.1);
   background: rgba(0,0,0,.16);
   border-radius: 18px;
@@ -352,6 +352,95 @@ label { color: var(--muted); display: grid; gap: 8px; font-size: 13px; font-weig
   border-color: rgba(255,94,168,.32);
 }
 .prompt-tools button:hover { border-color: rgba(88,166,255,.6); }
+.video-form {
+  border-color: rgba(94,229,162,.24);
+  background:
+    radial-gradient(circle at top left, rgba(94,229,162,.11), transparent 18rem),
+    rgba(0,0,0,.16);
+}
+.video-form code {
+  color: #d7e7ff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+.video-sections {
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 16px;
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+}
+.video-section {
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 16px;
+  padding: 12px;
+}
+.video-section header {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.video-section p {
+  color: var(--muted);
+  line-height: 1.4;
+  margin-top: 6px;
+}
+.scene-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+.scene-card {
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px;
+  background: rgba(0,0,0,.2);
+  padding: 10px;
+}
+.scene-card strong {
+  display: block;
+  margin-bottom: 5px;
+}
+.scene-card small {
+  color: var(--muted);
+  display: block;
+  line-height: 1.35;
+  margin-top: 5px;
+}
+.scene-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 7px;
+}
+.scene-meta span {
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  color: #d8ffea;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 7px;
+}
+.scene-add {
+  border: 1px dashed rgba(94,229,162,.28);
+  border-radius: 16px;
+  display: grid;
+  gap: 12px;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 12px;
+}
+.scene-add button {
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(94,229,162,.82);
+  color: #06101f;
+  border-radius: 14px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+  padding: 12px 16px;
+}
 .update-panel {
   border-color: rgba(94,229,162,.18);
 }
@@ -362,6 +451,11 @@ label { color: var(--muted); display: grid; gap: 8px; font-size: 13px; font-weig
 .media-form label,
 .comfy-form > div:first-child,
 .comfy-form > label,
+.video-form > div:first-child,
+.video-form > label,
+.video-form .prompt-tools,
+.video-form #videoProjectStatusText,
+.video-sections,
 .prompt-tools,
 .media-list,
 .media-prompt,
@@ -449,6 +543,6 @@ label { color: var(--muted); display: grid; gap: 8px; font-size: 13px; font-weig
 
 @media (max-width: 900px) {
   .hero { flex-direction: column; }
-  .cards, .two-col, .editor-grid, .lyrics-form, .media-form, .import-form, .comfy-form, .comfy-grid { grid-template-columns: 1fr; }
+  .cards, .two-col, .editor-grid, .lyrics-form, .media-form, .import-form, .comfy-form, .video-form, .comfy-grid, .scene-add { grid-template-columns: 1fr; }
   .panel-head { align-items: stretch; flex-direction: column; }
 }

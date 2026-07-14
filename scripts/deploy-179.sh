@@ -10,7 +10,7 @@ echo "Creating remote app directory on ${USER}@${HOST}:${REMOTE_DIR}"
 ssh "${USER}@${HOST}" "mkdir -p ${REMOTE_DIR}"
 
 echo "Copying Borobeya Control Center files"
-tar --no-xattrs -czf "${ARCHIVE}" package.json README.md src public data/catalog.seed.json data/workflows.json scripts
+tar --no-xattrs -czf "${ARCHIVE}" package.json README.md COMFYUI_ALBUM_COVER_ENGINE.md BOROBEYA_MUSIC_VIDEO_WORKFLOW.md src public data/catalog.seed.json data/workflows.json scripts
 scp "${ARCHIVE}" "${USER}@${HOST}:${REMOTE_DIR}/borobeya-control-center.tgz"
 ssh "${USER}@${HOST}" "cd ${REMOTE_DIR} && tar -xzf borobeya-control-center.tgz"
 

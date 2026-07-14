@@ -1,6 +1,7 @@
 const $ = (selector) => document.querySelector(selector);
 let catalogCache = [];
 let activeTrackId = "";
+let activeVideoProject = null;
 
 async function api(path, options) {
   const res = await fetch(path, {
@@ -349,6 +350,7 @@ async function loadRecord(id, section = "record") {
   renderMediaList(item);
   renderCoverGallery(item);
   loadComfyDefaults(item);
+  await loadVideoProject({ silent: true });
 
   if (section === "lyrics" || section === "styles" || section === "record") {
     if (item.lyrics) {
@@ -512,6 +514,194 @@ function loadComfyDefaults(item) {
   if (!item) return;
   if (!$("#comfyPrompt").value.trim()) {
     $("#comfyPrompt").value = defaultComfyPrompt(item);
+  }
+}
+
+function selectedTrackId() {
+  return activeTrackId || $("#lyricsTrack").value;
+}
+
+function defaultVideoWorld(item) {
+  if (!item) return "";
+  const styles = item.lyrics && Array.isArray(item.lyrics.styleTags) ? item.lyrics.styleTags.join(", ") : "";
+  return [
+    `Cinematic Borobeya music-video world for "${item.title}".`,
+    item.notes ? `Song notes: ${item.notes}.` : "",
+    styles ? `Music style: ${styles}.` : "",
+    "Luxury, emotion, movement, story symbolism, polished editorial lighting."
+  ].filter(Boolean).join(" ");
+}
+
+function videoProjectPayload({ draftSections = false } = {}) {
+  return {
+    targetDurationSeconds: Number($("#videoTargetDuration").value || 180),
+    sectionCount: Number($("#videoSectionCount").value || 7),
+    clipsPerSection: Number($("#videoClipsPerSection").value || 3),
+    status: $("#videoProjectStatus").value,
+    visualWorld: $("#videoVisualWorld").value.trim(),
+    mainCharacters: $("#videoMainCharacters").value.trim(),
+    palette: $("#videoPalette").value.trim(),
+    cameraStyle: $("#videoCameraStyle").value.trim(),
+    draftSections
+  };
+}
+
+function hydrateVideoForm(project, item) {
+  $("#videoTargetDuration").value = project?.targetDurationSeconds || 180;
+  $("#videoProjectStatus").value = project?.status || "planning";
+  $("#videoVisualWorld").value = project?.visualWorld || defaultVideoWorld(item);
+  $("#videoMainCharacters").value = project?.mainCharacters || "";
+  $("#videoPalette").value = project?.palette || "deep contrast, neon accents, premium editorial color, cinematic shadows";
+  $("#videoCameraStyle").value = project?.cameraStyle || "slow dolly, parallax drift, orbit shots, dramatic close-ups";
+}
+
+function sceneStatusBadge(status) {
+  const label = status || "planned";
+  const tone = label.includes("done") || label === "approved" ? "ok" : label === "redo" ? "warn" : "";
+  return `<span class="badge ${tone}">${escapeHtml(label)}</span>`;
+}
+
+function renderVideoProject(project, item) {
+  activeVideoProject = project || null;
+  hydrateVideoForm(project, item);
+
+  if (!project) {
+    $("#videoSections").innerHTML = `<p>No music-video project yet for ${escapeHtml(item.title)}. Click “Draft sections” to create the first 5-7 section structure.</p>`;
+    $("#sceneSection").innerHTML = "";
+    $("#videoProjectStatusText").textContent = "No project loaded yet.";
+    return;
+  }
+
+  const sections = project.sections || [];
+  const scenes = sections.flatMap((section) => section.scenes || []);
+  $("#videoProjectStatusText").textContent = `${project.title || item.title}: ${sections.length} section${sections.length === 1 ? "" : "s"}, ${scenes.length} scene${scenes.length === 1 ? "" : "s"}.`;
+  $("#sceneSection").innerHTML = sections
+    .map((section) => `<option value="${escapeHtml(section.id)}">${escapeHtml(section.order || "")}. ${escapeHtml(section.name)}</option>`)
+    .join("");
+
+  if (!sections.length) {
+    $("#videoSections").innerHTML = `<p>Project saved, but no sections yet. Click “Draft sections”.</p>`;
+    return;
+  }
+
+  $("#videoSections").innerHTML = sections.map((section) => `
+    <article class="video-section">
+      <header>
+        <div>
+          <strong>${escapeHtml(section.order || "")}. ${escapeHtml(section.name || "Untitled section")}</strong>
+          <small class="muted">${Number(section.durationSeconds || 0)} sec · ${escapeHtml(section.emotion || "emotion TBD")}</small>
+        </div>
+        <span class="badge">${(section.scenes || []).length} scene${(section.scenes || []).length === 1 ? "" : "s"}</span>
+      </header>
+      ${section.summary ? `<p>${escapeHtml(section.summary)}</p>` : ""}
+      ${section.lyricRange ? `<p><small>${escapeHtml(section.lyricRange)}</small></p>` : ""}
+      <div class="scene-list">
+        ${(section.scenes || []).map((scene) => `
+          <article class="scene-card">
+            <strong>Scene ${escapeHtml(scene.order || "")}: ${escapeHtml(scene.storyBeat || "Story beat TBD")}</strong>
+            <div class="scene-meta">
+              ${sceneStatusBadge(scene.status)}
+              <span>${Number(scene.durationSeconds || 0)} sec</span>
+              <span>${escapeHtml(scene.width || 768)}×${escapeHtml(scene.height || 512)}</span>
+              <span>${escapeHtml(scene.fps || 24)} fps</span>
+              <span>${escapeHtml(scene.targetWorker || "worker TBD")}</span>
+            </div>
+            ${scene.cameraMotion ? `<small>Camera: ${escapeHtml(scene.cameraMotion)}</small>` : ""}
+            ${scene.imagePrompt ? `<small>Image: ${escapeHtml(scene.imagePrompt)}</small>` : ""}
+            ${scene.videoPrompt ? `<small>Video: ${escapeHtml(scene.videoPrompt)}</small>` : ""}
+          </article>
+        `).join("")}
+      </div>
+    </article>
+  `).join("");
+}
+
+async function loadVideoProject({ silent = false } = {}) {
+  const id = selectedTrackId();
+  if (!id) {
+    $("#videoProjectStatusText").textContent = "Pick or click a catalog record first.";
+    return;
+  }
+  try {
+    if (!silent) $("#videoProjectStatusText").textContent = "Loading video project...";
+    const data = await api(`/api/catalog/${encodeURIComponent(id)}/video-project`);
+    renderVideoProject(data.project, data.item);
+    if (!silent && data.project) $("#videoProjectStatusText").textContent = `Loaded video project for ${data.item.title}.`;
+  } catch (error) {
+    $("#videoProjectStatusText").textContent = `Video project load failed: ${error.message}`;
+  }
+}
+
+async function saveVideoProject(event) {
+  event.preventDefault();
+  const id = selectedTrackId();
+  if (!id) {
+    $("#videoProjectStatusText").textContent = "Pick or click a catalog record first.";
+    return;
+  }
+  try {
+    $("#videoProjectStatusText").textContent = "Saving music-video project...";
+    const data = await api(`/api/catalog/${encodeURIComponent(id)}/video-project`, {
+      method: "POST",
+      body: JSON.stringify(videoProjectPayload())
+    });
+    renderVideoProject(data.project, data.item);
+    $("#videoProjectStatusText").textContent = `Saved project for ${data.item.title}.`;
+  } catch (error) {
+    $("#videoProjectStatusText").textContent = `Video project save failed: ${error.message}`;
+  }
+}
+
+async function draftVideoProject() {
+  const id = selectedTrackId();
+  if (!id) {
+    $("#videoProjectStatusText").textContent = "Pick or click a catalog record first.";
+    return;
+  }
+  try {
+    $("#videoProjectStatusText").textContent = "Drafting sections and scene prompts from this song...";
+    const data = await api(`/api/catalog/${encodeURIComponent(id)}/video-project`, {
+      method: "POST",
+      body: JSON.stringify(videoProjectPayload({ draftSections: true }))
+    });
+    renderVideoProject(data.project, data.item);
+    $("#videoProjectStatusText").textContent = `Drafted ${data.project.sections.length} sections for ${data.item.title}.`;
+  } catch (error) {
+    $("#videoProjectStatusText").textContent = `Draft failed: ${error.message}`;
+  }
+}
+
+async function addSceneToVideoProject() {
+  const id = selectedTrackId();
+  if (!id) {
+    $("#videoProjectStatusText").textContent = "Pick or click a catalog record first.";
+    return;
+  }
+  const payload = {
+    sectionId: $("#sceneSection").value,
+    durationSeconds: Number($("#sceneDuration").value || 8),
+    targetWorker: $("#sceneWorker").value,
+    storyBeat: $("#sceneStoryBeat").value.trim(),
+    imagePrompt: $("#sceneImagePrompt").value.trim(),
+    videoPrompt: $("#sceneVideoPrompt").value.trim()
+  };
+  if (!payload.sectionId) {
+    $("#videoProjectStatusText").textContent = "Draft or load sections before adding a scene.";
+    return;
+  }
+  try {
+    $("#videoProjectStatusText").textContent = "Adding scene...";
+    const data = await api(`/api/catalog/${encodeURIComponent(id)}/video-project/scenes`, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    });
+    renderVideoProject(data.project, data.item);
+    $("#sceneStoryBeat").value = "";
+    $("#sceneImagePrompt").value = "";
+    $("#sceneVideoPrompt").value = "";
+    $("#videoProjectStatusText").textContent = `Added scene ${data.scene.order} to ${data.item.title}.`;
+  } catch (error) {
+    $("#videoProjectStatusText").textContent = `Add scene failed: ${error.message}`;
   }
 }
 
@@ -701,6 +891,10 @@ async function boot() {
   $("#copyComfyPrompt").addEventListener("click", copyComfyPrompt);
   $("#pasteComfyPrompt").addEventListener("click", pasteComfyPrompt);
   $("#clearComfyPrompt").addEventListener("click", clearComfyPrompt);
+  $("#videoProjectForm").addEventListener("submit", saveVideoProject);
+  $("#loadVideoProject").addEventListener("click", () => loadVideoProject());
+  $("#draftVideoProject").addEventListener("click", draftVideoProject);
+  $("#addScene").addEventListener("click", addSceneToVideoProject);
   $("#lyricsTrack").addEventListener("change", (event) => loadRecord(event.target.value, "record"));
   $("#search").addEventListener("input", async (event) => {
     const q = event.target.value.trim();

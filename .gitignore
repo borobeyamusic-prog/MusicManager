@@ -5,3 +5,4 @@ node_modules/
 *.pid
 *.tgz
 npm-debug.log*
+data/video-projects.runtime.json

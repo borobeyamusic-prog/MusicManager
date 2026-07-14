@@ -8,6 +8,7 @@ Local Node.js control center for Borobeya Music.
 - Stores royalty plumbing fields: writer, publisher, ASCAP status, future ASCAP work ID.
 - Adds a lightweight built-in vector search index with no external database dependency.
 - Tracks A-Z workflows for creation, short videos, YouTube growth, Google Ads, Amazon store, sales tools, and ASCAP.
+- Defines the Borobeya music-video workflow: lyrics/storyline -> scenes -> still images -> image-to-video clips -> final assembly.
 - Provides API routes and a frontend dashboard.
 
 ## Run
@@ -27,6 +28,11 @@ http://localhost:4179
 ```bash
 npm run check
 ```
+
+## Workflow design
+
+- [ComfyUI album cover engine](COMFYUI_ALBUM_COVER_ENGINE.md)
+- [Borobeya music video workflow](BOROBEYA_MUSIC_VIDEO_WORKFLOW.md)
 
 ## API
 

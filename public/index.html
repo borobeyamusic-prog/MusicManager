@@ -176,6 +176,93 @@
               <span id="comfyStatus" class="muted"></span>
             </div>
           </form>
+
+          <form id="videoProjectForm" class="video-form">
+            <div>
+              <p class="eyebrow">Music Video Builder</p>
+              <h3>Storyline, sections, and scene prompts</h3>
+              <p class="muted">Phase 1 of the Borobeya workflow: lyrics/storyline → sections → scenes → stills on <code>.171</code> → clips on <code>.175</code>.</p>
+            </div>
+            <div class="comfy-grid">
+              <label>
+                Target seconds
+                <input id="videoTargetDuration" type="number" min="30" max="600" value="180" />
+              </label>
+              <label>
+                Sections
+                <input id="videoSectionCount" type="number" min="1" max="9" value="7" />
+              </label>
+              <label>
+                Clips / section
+                <input id="videoClipsPerSection" type="number" min="1" max="7" value="3" />
+              </label>
+              <label>
+                Status
+                <select id="videoProjectStatus">
+                  <option value="planning">Planning</option>
+                  <option value="images">Generating images</option>
+                  <option value="videos">Generating videos</option>
+                  <option value="review">Review</option>
+                  <option value="assembling">Assembling</option>
+                  <option value="complete">Complete</option>
+                </select>
+              </label>
+            </div>
+            <label>
+              Visual world
+              <textarea id="videoVisualWorld" rows="3" placeholder="Describe the world, emotion, location, and symbolic visual language for this song."></textarea>
+            </label>
+            <label>
+              Main characters / objects
+              <textarea id="videoMainCharacters" rows="3" placeholder="Recurring character, clothing, vehicle, instrument, object, animal, city, ocean, etc."></textarea>
+            </label>
+            <label>
+              Palette
+              <input id="videoPalette" placeholder="deep blue shadows, gold highlights, neon pink, moonlit silver..." />
+            </label>
+            <label>
+              Camera style
+              <input id="videoCameraStyle" placeholder="slow dolly, orbit, parallax, handheld, crane rise..." />
+            </label>
+            <div class="prompt-tools">
+              <button id="loadVideoProject" type="button">Load project</button>
+              <button id="draftVideoProject" type="button">Draft sections</button>
+              <button type="submit">Save project</button>
+            </div>
+            <div id="videoProjectStatusText" class="muted"></div>
+            <div id="videoSections" class="video-sections muted">No music-video project loaded.</div>
+            <div class="scene-add">
+              <label>
+                Add scene to section
+                <select id="sceneSection"></select>
+              </label>
+              <label>
+                Scene seconds
+                <input id="sceneDuration" type="number" min="2" max="60" value="8" />
+              </label>
+              <label>
+                Worker
+                <select id="sceneWorker">
+                  <option value=".171 still image">.171 still image</option>
+                  <option value=".175 image-to-video">.175 image-to-video</option>
+                  <option value="third worker TBD">third worker TBD</option>
+                </select>
+              </label>
+              <label class="lyrics-textarea">
+                Story beat
+                <textarea id="sceneStoryBeat" rows="2" placeholder="What happens in this shot?"></textarea>
+              </label>
+              <label class="lyrics-textarea">
+                Image prompt
+                <textarea id="sceneImagePrompt" rows="3" placeholder="Still image prompt for .171"></textarea>
+              </label>
+              <label class="lyrics-textarea">
+                Video prompt
+                <textarea id="sceneVideoPrompt" rows="3" placeholder="Motion prompt for .175"></textarea>
+              </label>
+              <button id="addScene" type="button">Add scene</button>
+            </div>
+          </form>
         </div>
       </section>
 
