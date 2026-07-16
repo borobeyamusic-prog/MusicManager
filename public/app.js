@@ -841,6 +841,20 @@ async function checkComfyHealth() {
   }
 }
 
+async function checkCloudCoverHealth() {
+  try {
+    $("#comfyStatus").textContent = "Checking OpenAI + Midjourney engine status...";
+    const health = await api("/api/comfy/cloud-health");
+    const openai = health.openai?.ready
+      ? `OpenAI ready (${health.openai.model}).`
+      : "OpenAI not configured. Add OPENAI_API_KEY on .179.";
+    const midjourney = "Midjourney is manual/import for now.";
+    $("#comfyStatus").textContent = `${openai} ${midjourney}`;
+  } catch (error) {
+    $("#comfyStatus").textContent = `Cloud engine check failed: ${error.message}`;
+  }
+}
+
 async function pollComfyJob(jobId) {
   const job = await api(`/api/comfy/jobs/${encodeURIComponent(jobId)}`);
   const total = Number(job.count || 0);
@@ -880,6 +894,7 @@ async function submitComfy(event) {
   }
 
   const payload = {
+    engine: $("#comfyEngine").value,
     count: Number($("#comfyCount").value || 4),
     width: Number($("#comfyWidth").value || 1024),
     height: Number($("#comfyHeight").value || 1024),
@@ -888,18 +903,26 @@ async function submitComfy(event) {
     prompt: $("#comfyPrompt").value.trim()
   };
 
+  if (payload.engine === "midjourney-import") {
+    $("#comfyStatus").textContent = "Midjourney is manual/import right now: generate in Midjourney, then add it as album-cover media here.";
+    $("#mediaKind").value = "album-cover";
+    $("#mediaPrompt").value = payload.prompt;
+    $("#mediaUrl").focus();
+    return;
+  }
+
   try {
-    $("#comfyStatus").textContent = "Submitting ComfyUI batch...";
+    $("#comfyStatus").textContent = payload.engine === "openai-image" ? "Submitting OpenAI image batch..." : "Submitting ComfyUI batch...";
     const job = await api(`/api/catalog/${encodeURIComponent(id)}/comfy/album-covers`, {
       method: "POST",
       body: JSON.stringify(payload)
     });
-    $("#comfyStatus").textContent = `${job.title}: queued ${job.count} image${job.count === 1 ? "" : "s"}.`;
+    $("#comfyStatus").textContent = `${job.title}: queued ${job.count} image${job.count === 1 ? "" : "s"} via ${payload.engine}.`;
     pollComfyJob(job.id).catch((error) => {
       $("#comfyStatus").textContent = `ComfyUI polling failed: ${error.message}`;
     });
   } catch (error) {
-    $("#comfyStatus").textContent = `ComfyUI submit failed: ${error.message}`;
+    $("#comfyStatus").textContent = `Cover generation submit failed: ${error.message}`;
   }
 }
 
@@ -921,6 +944,7 @@ async function boot() {
   $("#clearMediaForm").addEventListener("click", clearMediaForm);
   $("#comfyForm").addEventListener("submit", submitComfy);
   $("#checkComfyHealth").addEventListener("click", checkComfyHealth);
+  $("#checkCloudCoverHealth").addEventListener("click", checkCloudCoverHealth);
   $("#buildComfyPrompt").addEventListener("click", () => buildComfyPromptFromSelection({ force: true }));
   $("#copyComfyPrompt").addEventListener("click", copyComfyPrompt);
   $("#pasteComfyPrompt").addEventListener("click", pasteComfyPrompt);

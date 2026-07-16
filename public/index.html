@@ -140,6 +140,14 @@
             </div>
             <div class="comfy-grid">
               <label>
+                Cover engine
+                <select id="comfyEngine">
+                  <option value="local-z-image">Local .171 Z-Image Turbo</option>
+                  <option value="openai-image">OpenAI premium image</option>
+                  <option value="midjourney-import">Midjourney manual/import</option>
+                </select>
+              </label>
+              <label>
                 How many
                 <input id="comfyCount" type="number" min="1" max="50" value="4" />
               </label>
@@ -173,6 +181,7 @@
             <div class="lyrics-actions">
               <button type="submit">Generate album covers</button>
               <button id="checkComfyHealth" type="button">Check ComfyUI</button>
+              <button id="checkCloudCoverHealth" type="button">Check cloud engines</button>
               <span id="comfyStatus" class="muted"></span>
             </div>
           </form>

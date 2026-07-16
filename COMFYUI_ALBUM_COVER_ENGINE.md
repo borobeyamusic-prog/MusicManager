@@ -4,7 +4,24 @@ Last verified: 2026-07-13
 
 ## Purpose
 
-Borobeya Control Center can use ComfyUI as a backend image engine for album-cover concept batches. The frontend selects a catalog title, sends album data and prompt notes to the Node backend, and the backend queues one or more ComfyUI Z-Image Turbo jobs.
+Borobeya Control Center can use local and cloud image engines for album-cover concept batches. The frontend selects a catalog title, sends album data and prompt notes to the Node backend, and the backend routes one or more jobs through the selected cover engine.
+
+## Cover engines
+
+- `local-z-image`: local ComfyUI Z-Image Turbo on `192.168.200.171:8188`.
+- `openai-image`: OpenAI Image API, enabled only when `OPENAI_API_KEY` is set on the `.179` server.
+- `midjourney-import`: manual/import lane for Midjourney artwork until an official API integration is configured.
+
+OpenAI images are saved under the configured `BOROBEYA_ASSETS_DIR` and served back through `/assets/generated-covers/...` so the catalog gallery can display them like local ComfyUI images.
+
+Recommended `.179` environment:
+
+```bash
+PORT=4179
+BOROBEYA_ASSETS_DIR=/home/efarzad/borobeya-assets
+OPENAI_API_KEY=...
+OPENAI_IMAGE_MODEL=gpt-image-2
+```
 
 ## ComfyUI target
 
@@ -32,6 +49,7 @@ These are expected to live on the TrueNAS-backed ComfyUI model share.
   - Checks `/object_info` to verify required models.
 - `src/server.js`
   - `GET /api/comfy/health`
+  - `GET /api/comfy/cloud-health`
   - `POST /api/catalog/:id/comfy/album-covers`
   - `GET /api/comfy/jobs/:jobId`
   - Runs album-cover batches as in-memory jobs.
@@ -41,6 +59,7 @@ These are expected to live on the TrueNAS-backed ComfyUI model share.
 
 The record editor now includes a ComfyUI panel with:
 
+- cover engine selector
 - image count
 - width
 - height
@@ -53,8 +72,9 @@ The record editor now includes a ComfyUI panel with:
 - clear prompt
 - `Generate album covers`
 - `Check ComfyUI`
+- `Check cloud engines`
 
-The selected catalog record supplies title, artist, tags, notes, and lyric style tags. `Build from album` writes a full editable prompt into the textarea. If the textarea has content, that exact prompt is sent to ComfyUI.
+The selected catalog record supplies title, artist, tags, notes, and lyric style tags. `Build from album` writes a full editable prompt into the textarea. If the textarea has content, that exact prompt is sent to the selected cover engine.
 
 ## Smoke test
 
