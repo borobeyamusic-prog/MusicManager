@@ -217,6 +217,14 @@
                 </select>
               </label>
             </div>
+            <label class="prompt-rescue">
+              <span>ChatGPT prompt rescue / paste content</span>
+              <textarea id="videoSourceContent" rows="5" placeholder="Option 1: paste title description, lyrics, story idea, character notes, or a rough music-video concept here. Option 2: click the magic wand and Control Center drafts the storyline from the catalog record."></textarea>
+            </label>
+            <label>
+              Whole music-video storyline
+              <textarea id="videoScriptTreatment" rows="5" placeholder="Magic wand will draft the full story arc here: intro, verses, chorus, bridge, final climax, outro."></textarea>
+            </label>
             <label>
               Visual world
               <textarea id="videoVisualWorld" rows="3" placeholder="Describe the world, emotion, location, and symbolic visual language for this song."></textarea>
@@ -235,7 +243,9 @@
             </label>
             <div class="prompt-tools">
               <button id="loadVideoProject" type="button">Load project</button>
+              <button id="rescueVideoScript" type="button">🪄 ChatGPT script rescue</button>
               <button id="draftVideoProject" type="button">Draft sections</button>
+              <button id="fillScenePrompts" type="button">🪄 Fill scene prompts</button>
               <button type="submit">Save project</button>
             </div>
             <div id="videoProjectStatusText" class="muted"></div>

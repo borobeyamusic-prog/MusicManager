@@ -129,17 +129,40 @@ Negative prompt:
   text, logo, watermark, deformed hands, extra limbs, glitch, low quality.
 ```
 
+## ChatGPT prompt rescue
+
+Control Center includes a prompt-rescue lane for music-video scripting.
+
+Two modes:
+
+1. Paste source content: rough story idea, title description, lyrics, character notes, or creative brief.
+2. Click the magic wand: draft the full treatment, visual world, character notes, palette, camera language, and scene prompts from the catalog record.
+
+The goal is to let ChatGPT rescue the music-video script before spending render points:
+
+- break the song into sections;
+- create many 10-15 second clip ideas;
+- write image prompts first;
+- validate or regenerate images;
+- animate approved images into clips;
+- cut the final video to the song in Adobe Premiere.
+
+For OpenArt, use `element2video` when a character/reference image should stay consistent across different scenes. Use `image2video` when the exact still image should become the first frame of the clip.
+
 ## First implementation target
 
 Build the smallest useful version first:
 
 1. Pick a catalog record.
 2. Paste or load lyrics.
-3. Generate a 5-7 section storyline manually or with an assistant.
-4. Create 1 scene per section.
-5. Generate 1 still image per scene on `.171`.
-6. Generate 1 short video clip per scene on `.175`.
-7. Save generated images/videos back into the catalog media list.
+3. Use ChatGPT prompt rescue to draft the storyline, visual world, character notes, palette, and camera language.
+4. Generate a 5-7 section storyline.
+5. Fill per-scene prompt packages.
+6. Generate 1 still image per scene on `.171`.
+7. Validate or regenerate stills until the visual direction works.
+8. Generate 10-15 second clips through `.175` local LTX or OpenArt via ChatGPT MCP.
+9. Save generated images/videos back into the catalog media list.
+10. Assemble approved clips in Adobe Premiere.
 
 After that works, expand to 3-7 clips per section and add full assembly.
 
@@ -223,4 +246,3 @@ The app should make the repeatable production decisions:
 - where it is saved
 - whether it is approved
 - how it becomes part of the final music video
-

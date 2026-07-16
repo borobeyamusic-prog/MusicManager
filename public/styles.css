@@ -330,6 +330,16 @@ label { color: var(--muted); display: grid; gap: 8px; font-size: 13px; font-weig
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   min-height: 220px;
 }
+.prompt-rescue textarea,
+#videoScriptTreatment {
+  background:
+    linear-gradient(135deg, rgba(88,166,255,.08), rgba(255,94,168,.06)),
+    rgba(0,0,0,.24);
+  border-color: rgba(88,166,255,.22);
+}
+.prompt-rescue span::before {
+  content: "✨ ";
+}
 .prompt-tools {
   grid-column: 1 / -1;
   display: flex;

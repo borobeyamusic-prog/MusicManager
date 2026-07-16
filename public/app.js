@@ -532,27 +532,121 @@ function defaultVideoWorld(item) {
   ].filter(Boolean).join(" ");
 }
 
-function videoProjectPayload({ draftSections = false } = {}) {
-  return {
+function videoProjectPayload({ draftSections = false, sections } = {}) {
+  const payload = {
     targetDurationSeconds: Number($("#videoTargetDuration").value || 180),
     sectionCount: Number($("#videoSectionCount").value || 7),
     clipsPerSection: Number($("#videoClipsPerSection").value || 3),
     status: $("#videoProjectStatus").value,
+    sourceContent: $("#videoSourceContent").value.trim(),
+    scriptTreatment: $("#videoScriptTreatment").value.trim(),
     visualWorld: $("#videoVisualWorld").value.trim(),
     mainCharacters: $("#videoMainCharacters").value.trim(),
     palette: $("#videoPalette").value.trim(),
     cameraStyle: $("#videoCameraStyle").value.trim(),
     draftSections
   };
+  if (sections) payload.sections = sections;
+  return payload;
 }
 
 function hydrateVideoForm(project, item) {
   $("#videoTargetDuration").value = project?.targetDurationSeconds || 180;
   $("#videoProjectStatus").value = project?.status || "planning";
+  $("#videoSourceContent").value = project?.sourceContent || "";
+  $("#videoScriptTreatment").value = project?.scriptTreatment || "";
   $("#videoVisualWorld").value = project?.visualWorld || defaultVideoWorld(item);
   $("#videoMainCharacters").value = project?.mainCharacters || "";
   $("#videoPalette").value = project?.palette || "deep contrast, neon accents, premium editorial color, cinematic shadows";
   $("#videoCameraStyle").value = project?.cameraStyle || "slow dolly, parallax drift, orbit shots, dramatic close-ups";
+}
+
+function briefForSelectedSong(item) {
+  const styles = item?.lyrics && Array.isArray(item.lyrics.styleTags) ? item.lyrics.styleTags.join(", ") : "";
+  return [
+    item ? `Title: ${item.title}` : "",
+    item?.artist ? `Artist: ${item.artist}` : "",
+    item?.notes ? `Description/notes: ${item.notes}` : "",
+    styles ? `Style tags: ${styles}` : "",
+    $("#lyricsText")?.value?.trim() ? `Lyrics:\n${$("#lyricsText").value.trim()}` : ""
+  ].filter(Boolean).join("\n\n");
+}
+
+function rescueVideoScript() {
+  const item = selectedCatalogItem();
+  if (!item) {
+    $("#videoProjectStatusText").textContent = "Pick or click a catalog record first.";
+    return;
+  }
+
+  const source = $("#videoSourceContent").value.trim() || briefForSelectedSong(item);
+  const title = item.title || "this song";
+  const artist = item.artist || "Borobeya Music";
+  const styleTags = item.lyrics && Array.isArray(item.lyrics.styleTags) ? item.lyrics.styleTags.join(", ") : "";
+
+  $("#videoSourceContent").value = source;
+  $("#videoVisualWorld").value = [
+    `A futuristic surreal Borobeya music-video universe for "${title}" by ${artist}.`,
+    "The visual language blends luxury editorial album-cover design, dreamlike sci-fi symbolism, emotional close-ups, and cinematic environments.",
+    styleTags ? `Music style influence: ${styleTags}.` : "",
+    "Every section should feel connected by recurring symbols, color, wardrobe, and camera grammar."
+  ].filter(Boolean).join(" ");
+  $("#videoMainCharacters").value = $("#videoMainCharacters").value.trim() || [
+    "One recurring lead character or symbolic avatar for the song.",
+    "Consistent wardrobe, face, silhouette, jewelry, and emotional presence across all clips.",
+    "Optional recurring objects: floating dice, ocean light, neon architecture, cosmic smoke, luxury vehicle, instrument, or mirror."
+  ].join(" ");
+  $("#videoPalette").value = $("#videoPalette").value.trim() || "black velvet shadows, magenta neon, teal/cyan glow, gold highlights, silver moonlight, cinematic haze";
+  $("#videoCameraStyle").value = $("#videoCameraStyle").value.trim() || "slow dolly, orbiting close-up, parallax drift, crane rise, low-angle hero shot, rhythmic cuts for Premiere";
+  $("#videoScriptTreatment").value = [
+    `Music video treatment for "${title}" by ${artist}:`,
+    "",
+    "Intro: establish the visual world and the main symbol before the beat fully opens.",
+    "Verse 1: introduce the character’s emotional conflict through surreal environments and small symbolic actions.",
+    "Chorus 1: expand into the strongest visual hook; make this the most memorable image language for the song.",
+    "Verse 2: escalate the story with motion, contrast, and a new setting while preserving the same character identity.",
+    "Bridge: enter a dreamlike or suspended-time sequence that feels different but still belongs to the same world.",
+    "Final chorus: combine the key symbols, strongest camera moves, and highest emotional energy.",
+    "Outro: resolve with a final iconic image that can also work as thumbnail/poster art.",
+    "",
+    "Clip rule: make many 10–15 second clips, each with one clear action, one camera idea, and one emotional beat. Generate still images first, approve/regenerate, then animate the approved images into clips."
+  ].join("\n");
+
+  $("#videoProjectStatusText").textContent = `Magic wand drafted the story direction for ${title}. Now click “Draft sections” or “Fill scene prompts”.`;
+}
+
+function scenePromptPackage(item, section, scene, index) {
+  const title = item?.title || "the song";
+  const visualWorld = $("#videoVisualWorld").value.trim();
+  const characters = $("#videoMainCharacters").value.trim();
+  const palette = $("#videoPalette").value.trim();
+  const camera = scene.cameraMotion || $("#videoCameraStyle").value.trim() || "slow cinematic dolly";
+  const sectionName = section.name || `Section ${section.order || ""}`;
+  const storyBeat = scene.storyBeat || `${sectionName} visual beat ${index + 1}`;
+  const clipDuration = Number(scene.durationSeconds || 12);
+  return {
+    ...scene,
+    durationSeconds: clipDuration,
+    storyBeat,
+    imagePrompt: [
+      `Premium futuristic surreal album-cover-quality still for a music video scene from "${title}".`,
+      `Section: ${sectionName}. Scene beat: ${storyBeat}.`,
+      visualWorld ? `World: ${visualWorld}` : "",
+      characters ? `Consistent character/reference notes: ${characters}` : "",
+      palette ? `Palette: ${palette}` : "",
+      "Single iconic frame, cinematic lighting, rich detail, emotional expression, strong composition, no text, no logo, no watermark."
+    ].filter(Boolean).join(" "),
+    videoPrompt: [
+      `Create a ${clipDuration}-second cinematic music-video clip for "${title}".`,
+      `Continue the same character and visual world. Section: ${sectionName}.`,
+      `Action/story beat: ${storyBeat}.`,
+      `Camera: ${camera}.`,
+      "Motion should feel smooth, expensive, surreal, and editable in Adobe Premiere. Keep identity, wardrobe, colors, and symbols consistent. Avoid sudden face/body changes, flicker, text, logos, or watermark."
+    ].filter(Boolean).join(" "),
+    negativePrompt: scene.negativePrompt || "text, logo, watermark, ugly, low quality, glitch, distorted hands, extra limbs, flicker, identity drift",
+    cameraMotion: camera,
+    targetWorker: scene.targetWorker && scene.targetWorker !== "third worker TBD" ? scene.targetWorker : "OpenArt via ChatGPT"
+  };
 }
 
 function sceneStatusBadge(status) {
@@ -681,6 +775,36 @@ async function draftVideoProject() {
     $("#videoProjectStatusText").textContent = `Drafted ${data.project.sections.length} sections for ${data.item.title}.`;
   } catch (error) {
     $("#videoProjectStatusText").textContent = `Draft failed: ${error.message}`;
+  }
+}
+
+async function fillScenePrompts() {
+  const id = selectedTrackId();
+  const item = selectedCatalogItem();
+  if (!id || !item) {
+    $("#videoProjectStatusText").textContent = "Pick or click a catalog record first.";
+    return;
+  }
+  if (!activeVideoProject || !(activeVideoProject.sections || []).length) {
+    $("#videoProjectStatusText").textContent = "Draft or load sections first, then click Fill scene prompts.";
+    return;
+  }
+
+  const sections = (activeVideoProject.sections || []).map((section) => ({
+    ...section,
+    scenes: (section.scenes || []).map((scene, index) => scenePromptPackage(item, section, scene, index))
+  }));
+
+  try {
+    $("#videoProjectStatusText").textContent = "Magic wand is filling image/video prompts for every scene...";
+    const data = await api(`/api/catalog/${encodeURIComponent(id)}/video-project`, {
+      method: "POST",
+      body: JSON.stringify(videoProjectPayload({ sections }))
+    });
+    renderVideoProject(data.project, data.item);
+    $("#videoProjectStatusText").textContent = `Filled ${sections.flatMap((section) => section.scenes || []).length} scene prompt package${sections.flatMap((section) => section.scenes || []).length === 1 ? "" : "s"} for ${data.item.title}.`;
+  } catch (error) {
+    $("#videoProjectStatusText").textContent = `Fill scene prompts failed: ${error.message}`;
   }
 }
 
@@ -951,7 +1075,9 @@ async function boot() {
   $("#clearComfyPrompt").addEventListener("click", clearComfyPrompt);
   $("#videoProjectForm").addEventListener("submit", saveVideoProject);
   $("#loadVideoProject").addEventListener("click", () => loadVideoProject());
+  $("#rescueVideoScript").addEventListener("click", rescueVideoScript);
   $("#draftVideoProject").addEventListener("click", draftVideoProject);
+  $("#fillScenePrompts").addEventListener("click", fillScenePrompts);
   $("#addScene").addEventListener("click", addSceneToVideoProject);
   $("#lyricsTrack").addEventListener("change", (event) => loadRecord(event.target.value, "record"));
   $("#search").addEventListener("input", async (event) => {

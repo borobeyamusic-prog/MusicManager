@@ -355,6 +355,8 @@ function baseVideoProject(item, payload = {}) {
     mainCharacters: payload.mainCharacters || "",
     palette: payload.palette || "deep contrast, neon accents, premium editorial color, cinematic shadows",
     cameraStyle: payload.cameraStyle || "slow dolly, parallax drift, orbit shots, dramatic close-ups",
+    sourceContent: payload.sourceContent || "",
+    scriptTreatment: payload.scriptTreatment || "",
     status: "planning",
     sections: [],
     createdAt: now,
@@ -700,11 +702,13 @@ const server = http.createServer(async (req, res) => {
         mainCharacters: payload.mainCharacters || existing.mainCharacters,
         palette: payload.palette || existing.palette,
         cameraStyle: payload.cameraStyle || existing.cameraStyle,
+        sourceContent: payload.sourceContent !== undefined ? payload.sourceContent : existing.sourceContent,
+        scriptTreatment: payload.scriptTreatment !== undefined ? payload.scriptTreatment : existing.scriptTreatment,
         status: payload.status || existing.status || "planning",
         updatedAt: now
       };
       if (payload.draftSections) {
-        const lyrics = await readLyricsSafely(item);
+        const lyrics = [payload.sourceContent, payload.scriptTreatment, await readLyricsSafely(item)].filter(Boolean).join("\n\n");
         project.sections = defaultVideoSections(
           item,
           lyrics,
